@@ -1,0 +1,10 @@
+<button
+  class="px-4 py-2 rounded-md border text-sm font-medium transition-colors"
+  [ngClass]="{
+    'bg-primary-600 text-white border-primary-700 hover:bg-primary-700': variant === 'primary',
+    'bg-secondary text-white border-secondary hover:bg-teal-600': variant === 'secondary',
+    'bg-gray-100 text-gray-900 border-gray-200 hover:bg-gray-200': variant === 'default'
+  }"
+>
+  {{ label }}
+</button>
