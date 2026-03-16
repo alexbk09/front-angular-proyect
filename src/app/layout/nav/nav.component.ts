@@ -1,12 +1,12 @@
 import { Component, signal, inject } from '@angular/core';
-import { RouterLink } from '@angular/router';
+import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ThemeService } from '../../infrastructure/services/theme.service';
 
 @Component({
   selector: 'layout-nav',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, RouterLinkActive],
   templateUrl: './nav.component.html'
 })
 export class NavComponent {

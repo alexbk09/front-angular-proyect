@@ -1,4 +1,4 @@
-/** @type {import('tailwindcss').Config} */
+/** @type {import("tailwindcss").Config} */
 module.exports = {
   darkMode: 'class',
   content: ['./src/**/*.{html,ts}'],
@@ -19,7 +19,22 @@ module.exports = {
           900: '#1e3a8a'
         },
         secondary: '#14b8a6',
-        accent: '#f59e0b'
+        accent: '#f59e0b',
+        surface: {
+          DEFAULT: '#ffffff',
+          muted: '#f9fafb',
+          dark: '#020617'
+        }
+      },
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', '"Segoe UI"', 'sans-serif']
+      },
+      borderRadius: {
+        xl: '1rem',
+        '2xl': '1.5rem'
+      },
+      boxShadow: {
+        soft: '0 10px 30px rgba(15,23,42,0.08)'
       },
       container: {
         center: true,
