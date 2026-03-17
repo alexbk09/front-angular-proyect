@@ -13,6 +13,17 @@
       @if (isAuthenticated()) {
         <span class="h-5 w-px bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
         <a routerLink="/dashboard" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Dashboard</a>
+        <div class="relative group" (mouseenter)="openAdmin = true" (mouseleave)="openAdmin = false">
+          <button type="button" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 font-semibold flex items-center gap-1 focus:outline-none" aria-haspopup="true">
+            Admin
+            <svg class="w-4 h-4 transition-transform" [ngClass]="{'rotate-180': openAdmin}" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7"/></svg>
+          </button>
+          <div *ngIf="openAdmin" class="absolute left-0 mt-2 w-48 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded shadow-lg z-50">
+            <a routerLink="/admin/hero" routerLinkActive="text-primary-600" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Hero</a>
+            <a routerLink="/admin/skills" routerLinkActive="text-primary-600" class="block px-4 py-2 text-gray-700 dark:text-gray-200 hover:bg-primary-50 dark:hover:bg-primary-900">Skills</a>
+            <!-- Agrega aquí más accesos a admin (proyectos, testimonios, etc.) -->
+          </div>
+        </div>
         <a routerLink="/catalog" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Catálogo</a>
         <a routerLink="/projects/wizard" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Nuevo proyecto</a>
         <a routerLink="/notifications" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Notificaciones</a>

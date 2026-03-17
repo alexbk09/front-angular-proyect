@@ -3,6 +3,11 @@ import { authGuard } from './infrastructure/guards/auth.guard';
 import { InicioPage } from './pages/inicio/inicio.page';
 
 export const routes: Routes = [
+  {
+    path: 'admin',
+    canActivate: [authGuard],
+    loadChildren: () => import('./pages/admin/admin.routes').then((m) => m.ADMIN_ROUTES)
+  },
   { path: '', redirectTo: 'inicio', pathMatch: 'full' },
   { path: 'inicio', component: InicioPage },
   {

@@ -1,3 +1,11 @@
+// Skill para administración (CRUD)
+export interface Skill {
+  id?: string;
+  name: string;
+  category: string;
+  isFeatured: boolean;
+  order: number;
+}
 import { ApiProjectDto } from './api-project.model';
 
 export interface HomeLink {

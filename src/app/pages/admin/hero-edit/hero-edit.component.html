@@ -1,0 +1,53 @@
+<form [formGroup]="form" (ngSubmit)="submit()" class="max-w-2xl mx-auto p-8 bg-white dark:bg-gray-900 rounded-2xl shadow-xl space-y-8 border border-gray-100 dark:border-gray-800">
+  <h2 class="text-3xl font-bold mb-6 text-primary-700 dark:text-primary-300 tracking-tight">Editar sección Hero</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="space-y-4">
+      <label class="block">
+        <span class="block font-semibold mb-1">Título</span>
+        <input formControlName="title" class="input" />
+      </label>
+      <label class="block">
+        <span class="block font-semibold mb-1">Subtítulo</span>
+        <input formControlName="subtitle" class="input" />
+      </label>
+      <label class="block">
+        <span class="block font-semibold mb-1">Rol</span>
+        <input formControlName="role" class="input" />
+      </label>
+      <label class="block">
+        <span class="block font-semibold mb-1">Ubicación</span>
+        <input formControlName="location" class="input" />
+      </label>
+    </div>
+    <div class="space-y-4">
+      <label class="block">
+        <span class="block font-semibold mb-1">Descripción</span>
+        <textarea formControlName="description" class="input" rows="4"></textarea>
+      </label>
+      <label class="block">
+        <span class="block font-semibold mb-1">Avatar URL</span>
+        <input formControlName="avatarUrl" class="input" />
+      </label>
+    </div>
+  </div>
+  <div class="pt-6">
+    <h3 class="font-semibold text-lg mb-3 text-primary-700 dark:text-primary-300">Links</h3>
+    <div formArrayName="links" class="space-y-3">
+      <div *ngFor="let link of linksArray.controls; let i = index" [formGroupName]="i" class="flex flex-col md:flex-row gap-2 items-end md:items-center bg-gray-50 dark:bg-gray-800 rounded-lg p-3">
+        <input formControlName="type" placeholder="Tipo" class="input w-full md:w-1/5" />
+        <input formControlName="label" placeholder="Label" class="input w-full md:w-1/4" />
+        <input formControlName="url" placeholder="URL" class="input w-full md:w-2/5" />
+        <button type="button" (click)="removeLink(i)" class="btn btn-danger">Quitar</button>
+      </div>
+    </div>
+    <button type="button" (click)="addLink()" class="btn btn-primary mt-3">Agregar Link</button>
+  </div>
+  <div class="flex gap-4 items-center pt-4">
+    <button type="submit" [disabled]="loading()" class="btn btn-success min-w-[120px]">
+      <span *ngIf="!loading()">Guardar cambios</span>
+      <span *ngIf="loading()" class="animate-spin">⏳</span>
+    </button>
+    <span *ngIf="success()" class="text-green-600 animate-fade-in">¡Guardado!</span>
+    <span *ngIf="error()" class="text-red-600">{{ error() }}</span>
+  </div>
+</form>

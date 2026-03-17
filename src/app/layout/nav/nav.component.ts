@@ -1,3 +1,4 @@
+  openAdmin = false;
 import { Component, signal, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
@@ -12,6 +13,7 @@ import { AuthApiService } from '../../infrastructure/services/auth-api.service';
   templateUrl: './nav.component.html'
 })
 export class NavComponent {
+  openAdmin = false;
   open = signal(false);
   toggle() { this.open.update(v => !v); }
   close() { this.open.set(false); }
