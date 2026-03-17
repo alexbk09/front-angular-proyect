@@ -36,7 +36,11 @@ export class AuthPage {
 
   readonly registerForm = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(2)]],
-    email: ['', [Validators.required, Validators.email]],
+    email: this.fb.nonNullable.control('', {
+      validators: [Validators.required, Validators.email],
+      asyncValidators: [emailAvailabilityValidator()],
+      updateOn: 'blur'
+    }),
     password: ['', [Validators.required, Validators.minLength(6)]],
     password_confirmation: ['', [Validators.required, Validators.minLength(6)]],
     role: ['freelancer' as RegisterPayload['role'], [Validators.required]]

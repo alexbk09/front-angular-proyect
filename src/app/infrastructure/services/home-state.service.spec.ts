@@ -30,10 +30,21 @@ describe('HomeStateService', () => {
     expect(service.filteredProjects()).toEqual([]);
   });
 
-  it('debe actualizar projects y status en éxito', () => {
+  it('debe actualizar projects y status en ï¿½xito', () => {
     const apiResponse: ListProjectsResponse = {
       data: [
-        { id: 1, title: 'P1', description: 'Desc', tags: ['angular'], highlight: true }
+        {
+          id: 1,
+          title: 'P1',
+          description: 'Desc',
+          tags: ['angular'],
+          highlight: true,
+          imageUrl: 'https://example.com/p1.png',
+          url: 'https://example.com/p1',
+          githubUrl: 'https://github.com/example/p1',
+          createdAt: '2024-01-01T00:00:00.000Z',
+          updatedAt: '2024-01-01T00:00:00.000Z'
+        }
       ],
       meta: {} as unknown
     };

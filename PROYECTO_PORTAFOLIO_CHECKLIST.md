@@ -95,7 +95,7 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 ## 8. Formularios y Validaciones
 
 - [x] Uso de formularios reactivos o template-driven con estructura clara.
-- [ ] Validaciones síncronas y asíncronas bien definidas y tipadas.
+- [x] Validaciones síncronas y asíncronas bien definidas y tipadas.
 - [x] Mensajes de error de validación claros, amigables y accesibles.
 - [x] Manejo de envío múltiple (deshabilitar botón, mostrar loading, etc.).
 
@@ -105,8 +105,8 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 - [x] Lazy loading de módulos/rutas pesadas.
 - [x] Carga diferida de imágenes (`lazy`), assets pesados optimizados.
-- [ ] Uso de `trackBy` en listas *ngFor (o equivalente) para evitar renders innecesarios.
-- [ ] Evitar recalcular datos caros en template; usar pipes puros o memoización.
+- [x] Uso de `trackBy` en listas *ngFor (o equivalente) para evitar renders innecesarios.
+- [x] Evitar recalcular datos caros en template; usar pipes puros o memoización.
 - [ ] Build de producción verificado (tamaños de bundles razonables).
 
 ---
@@ -133,12 +133,12 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 ## 12. Documentación del Proyecto
 
 - [ ] README principal con:
-  - [ ] Descripción corta del proyecto (qué resuelve y por qué es interesante).
-  - [ ] Stack tecnológico y principales decisiones.
-  - [ ] Instrucciones de instalación, desarrollo, testing y build.
+  - [x] Descripción corta del proyecto (qué resuelve y por qué es interesante).
+  - [x] Stack tecnológico y principales decisiones.
+  - [x] Instrucciones de instalación, desarrollo, testing y build.
   - [ ] Capturas de pantalla y/o GIFs del producto.
-- [ ] Notas de arquitectura (carpetas, patrones, decisiones clave).
-- [ ] Lista de features implementados y futuros (roadmap corto).
+- [x] Notas de arquitectura (carpetas, patrones, decisiones clave).
+- [x] Lista de features implementados y futuros (roadmap corto).
 
 ---
 
@@ -159,8 +159,8 @@ Para que tu proyecto "tenga de todo" y muestre experiencia senior:
 - [x] **Módulo Auth**: login, registro, recuperación de contraseña, manejo de sesión.
 - [x] **Módulo Dashboard**: métricas, gráficos, tablas filtrables y paginadas.
 - [x] **Módulo Perfil de Usuario**: edición de datos, avatar, preferencias.
-- [ ] **Módulo Configuración**: opciones del sistema/usuario (tema oscuro/claro, idioma, etc.).
-- [ ] **Módulo Catálogo/Listado**: listados con filtros avanzados, ordenamiento y detalle.
+- [x] **Módulo Configuración**: opciones del sistema/usuario (tema oscuro/claro, idioma, etc.).
+- [x] **Módulo Catálogo/Listado**: listados con filtros avanzados, ordenamiento y detalle.
 - [ ] **Módulo Formularios Complejos**: formularios multi-step, validaciones avanzadas, resumen final.
 - [ ] **Módulo Notificaciones**: toasts, banners, estado leído/no leído.
 

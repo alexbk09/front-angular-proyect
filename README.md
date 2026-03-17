@@ -1,59 +1,88 @@
-# FrontAngularProyect
+## Portafolio Frontend (Angular)
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.1.0.
+Proyecto de portafolio frontend construido con Angular 21 (standalone components) y Tailwind, pensado para demostrar capacidades "senior" en arquitectura, UX, estado, formularios avanzados, integración con backend Laravel y testing.
 
-## Development server
+Incluye módulos típicos de una app real: autenticación, dashboard, perfil de usuario, configuración (tema/idioma), catálogo de proyectos y base para formularios complejos.
 
-To start a local development server, run:
+## Stack y decisiones técnicas
 
-```bash
-ng serve
-```
+- Angular 21 con componentes standalone y ruteo lazy por feature.
+- Tailwind CSS para layout responsivo y design system ligero (tipografías, colores, spacing).
+- Estado por feature usando servicios con signals (Home, Dashboard, Auth, etc.).
+- Interceptores HTTP para token de autenticación y manejo global de errores.
+- Formularios reactivos con validaciones síncronas y asíncronas (ejemplo en registro).
+- Vitest como runner de tests unitarios para servicios y componentes clave.
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## Puesta en marcha
 
-## Code scaffolding
+### Requisitos
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+- Node.js LTS (recomendado 20.x).
+- npm o pnpm.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
+### Instalación
 
 ```bash
-ng build
+npm install
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
+### Desarrollo
 
 ```bash
-ng test
+npm start
 ```
 
-## Running end-to-end tests
+Aplicación disponible en `http://localhost:4200/`.
 
-For end-to-end (e2e) testing, run:
+### Tests
 
 ```bash
-ng e2e
+npm test
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Ejecuta la suite de tests unitarios con Vitest.
 
-## Additional Resources
+### Lint
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```bash
+npm run lint
+```
+
+Aplica las reglas de ESLint configuradas para el proyecto.
+
+### Build de producción
+
+```bash
+npm run build
+```
+
+Genera el bundle optimizado en la carpeta `dist/`.
+
+## Arquitectura y organización
+
+- `src/app/layout`: navegación principal, header, footer.
+- `src/app/pages`: páginas principales (home, auth, dashboard, profile, settings, catalog, not-found).
+- `src/app/components`: componentes UI reutilizables (botón, card, errores de formulario, etc.).
+- `src/app/infrastructure`: servicios HTTP, estado, modelos de API, guards, interceptores y validadores.
+
+La comunicación con el backend Laravel se hace vía servicios HTTP tipados (por ejemplo, AuthApiService, ProjectsApiService, ProfileApiService).
+
+## Features implementados (MVP)
+
+- Landing/Home con listado de proyectos destacados.
+- Módulo de autenticación (login/registro) con manejo de estado y errores.
+- Dashboard con métricas de ejemplo (integración prevista con backend).
+- Perfil de usuario editable, incluyendo preferencias de tema/idioma.
+- Módulo de configuración global (Settings) para cambiar tema e idioma.
+- Catálogo de proyectos con búsqueda, filtros por tags y ordenación.
+- Manejo de estados de carga, error y vacío en las vistas clave.
+
+## Capturas / demo
+
+- TODO: añadir capturas en `docs/screenshots/` (por ejemplo, `dashboard.png`, `profile.png`, `catalog.png`) y/o enlace a vídeo de demo.
+
+## Próximos pasos sugeridos
+
+- Completar módulo de formularios complejos (wizard de creación/edición de proyecto).
+- Implementar sistema de notificaciones (toasts + listado) integrado con la API.
+- Desplegar el proyecto (Vercel/Netlify/otro) y enlazarlo desde este README.

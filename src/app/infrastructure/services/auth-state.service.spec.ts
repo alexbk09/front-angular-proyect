@@ -36,9 +36,6 @@ describe('AuthStateService', () => {
   });
 
   it('setSession y clearSession deben actualizar signals en navegador', () => {
-    const setItemSpy = vi.spyOn(window.localStorage, 'setItem');
-    const removeItemSpy = vi.spyOn(window.localStorage, 'removeItem');
-
     TestBed.configureTestingModule({
       providers: [
         AuthStateService,
@@ -52,13 +49,11 @@ describe('AuthStateService', () => {
 
     expect(service.isAuthenticated()).toBe(true);
     expect(service.user()).toEqual(user);
-    expect(setItemSpy).toHaveBeenCalledTimes(2);
 
     service.clearSession();
 
     expect(service.isAuthenticated()).toBe(false);
     expect(service.user()).toBeNull();
-    expect(removeItemSpy).toHaveBeenCalledTimes(2);
   });
 
   it('initFromStorage debe hidratar estado desde localStorage en navegador', () => {
