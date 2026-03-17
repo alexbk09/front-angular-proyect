@@ -115,8 +115,8 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 - [x] No exponer secretos en el frontend (API keys sensibles, tokens, etc.).
 - [x] Uso de `HttpInterceptor` (o similar) para adjuntar tokens y manejar expiraciones.
-- [ ] Sanitización y escape de contenido dinámico cuando sea necesario.
-- [ ] Política de CORS, headers de seguridad y HTTPS considerados (documentado aunque se configure en backend/nginx).
+- [x] Sanitización y escape de contenido dinámico cuando sea necesario.
+- [x] Política de CORS, headers de seguridad y HTTPS considerados (documentado aunque se configure en backend/nginx).
 
 ---
 
@@ -125,7 +125,7 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 - [x] Configuración básica de testing lista (`jest`/`karma`/`vitest` según el stack actual).
 - [x] Tests unitarios para componentes clave (render básico + lógica importante).
 - [x] Tests unitarios para servicios (lógica de negocio, mapping de datos, manejo de errores).
-- [ ] Tests de integración o e2e mínimos para flujos críticos (login, registro, flujo principal de la app).
+- [x] Tests de integración o e2e mínimos para flujos críticos (login, registro, flujo principal de la app).
 - [ ] Cobertura mínima de código alcanzada (por ejemplo, >70%) o justificada.
 
 ---
@@ -144,11 +144,11 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 ## 13. Calidad de Código y Mantenimiento
 
-- [ ] Reglas de linting ejecutadas y errores corregidos.
-- [ ] Código sin `console.log` ni comentarios basura.
-- [ ] Nombres de variables, funciones y componentes claros y descriptivos.
-- [ ] Reutilización de lógica común a través de helpers/hooks/servicios/utilidades.
-- [ ] Comentarios solo donde aportan contexto o decisiones no obvias.
+- [x] Reglas de linting ejecutadas y errores corregidos.
+- [x] Código sin `console.log` ni comentarios basura.
+- [x] Nombres de variables, funciones y componentes claros y descriptivos.
+- [x] Reutilización de lógica común a través de helpers/hooks/servicios/utilidades.
+- [x] Comentarios solo donde aportan contexto o decisiones no obvias.
 
 ---
 
@@ -179,3 +179,125 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 ---
 
 > Recomendación: copia este archivo al inicio de cada nuevo proyecto de portafolio y ajústalo al stack y objetivos de ese proyecto. Mantén siempre la mentalidad de código limpio, modular, testeable y con buena experiencia de usuario.
+
+---
+
+## 16. Fase 2 – Landing, Admin y CRUD de Portafolio
+
+### 16.1 Estrategia de contenido del inicio
+
+- [ ] Mensaje principal (1 frase) claro: qué haces y para quién.
+- [ ] Subtítulo con stack principal (Angular, Laravel, Tailwind, etc.).
+- [ ] Definir 3–4 tipos de problemas que resuelves (ej. dashboards, portales, sistemas internos).
+- [ ] Definir CTA principal del inicio ("Ver proyectos", "Descargar CV", "Agendar llamada").
+
+### 16.2 Hero / Cabecera de inicio
+
+- [ ] Foto/ilustración profesional visible.
+- [x] Título grande con tu rol (Frontend Engineer / Fullstack Developer, etc.).
+- [x] Subtítulo con experiencia y tipo de proyectos.
+- [x] Botones de acción:
+  - [x] "Ver proyectos destacados".
+  - [ ] "Descargar CV" (link administrable).
+- [x] Links a GitHub, LinkedIn y contacto.
+- [x] Layout moderno y responsive (2 columnas en desktop, 1 en mobile).
+- [ ] Todo el contenido del hero editable desde el admin.
+
+### 16.3 Sección "Sobre mí" orientada a empleo
+
+- [x] Párrafo corto (3–5 frases) explicando qué tipo de empresas/proyectos buscas.
+- [x] Explicar qué valor aportas (UX, escalabilidad, performance, testing, etc.).
+- [ ] Lista de 2–3 logros o highlights relevantes.
+- [ ] Contenido totalmente editable desde admin (texto y bullets).
+
+### 16.4 Habilidades y Tech Stack
+
+- [ ] Categorías de skills: Frontend, Backend, DevOps/Herramientas.
+- [x] Visualización moderna (chips, badges o bloques) sin "5 estrellas" infantiles.
+- [ ] Posibilidad de marcar skills que aparecen en el inicio.
+- [ ] CRUD de skills en admin (crear/editar/borrar, categoría, orden, visibilidad).
+
+### 16.5 Proyectos destacados en el inicio
+
+- [x] Flag `isFeatured` en proyectos para marcarlos como destacados (expuesto por backend y consumido vía `/api/home`).
+- [x] En el inicio mostrar 3–6 proyectos destacados con título, resumen corto, tags y enlaces.
+- [x] Botón "Ver todos los proyectos" que lleva al catálogo completo.
+- [x] Diseño de cards moderno con Tailwind y responsive.
+
+### 16.6 CRUD completo de proyectos (admin)
+
+- [ ] Admin de proyectos con crear/editar/borrar.
+- [ ] Campos de proyecto:
+  - [ ] Título.
+  - [ ] Descripción corta (para home).
+  - [ ] Descripción larga / historia (para detalle).
+  - [ ] Tecnologías (tags).
+  - [ ] Tipo de proyecto (personal, freelance, cliente, curso).
+  - [ ] Enlace demo.
+  - [ ] Enlace repo.
+  - [ ] Imágenes (screenshot principal + extras).
+  - [ ] Flags: `isFeatured`, `isPublic`.
+- [ ] Sincronizar el catálogo actual con estos campos y filtros.
+
+### 16.7 Testimonios / Social proof
+
+- [ ] Modelo de testimonios en backend (nombre, rol/empresa, texto, foto opcional).
+- [ ] CRUD de testimonios en admin.
+- [x] Sección en inicio que muestre 1–3 testimonios (slider o grid simple).
+- [ ] Opción para activar/desactivar esta sección desde admin.
+
+### 16.8 Métricas rápidas (impacto)
+
+- [ ] Bloques de stats (años de experiencia, proyectos finalizados, tecnologías dominadas, etc.).
+- [ ] Valores configurables desde admin.
+- [ ] Diseño responsive en 3–4 columnas desktop / 1–2 mobile.
+
+### 16.9 Sección de contacto / CTA final
+
+- [ ] Bloque final con texto tipo "¿Hablamos de tu próximo proyecto?".
+- [ ] Botón principal hacia email o formulario de contacto.
+- [ ] Link secundario a LinkedIn.
+- [ ] Formularios de contacto simples (nombre, email, mensaje) integrados con backend (opcional).
+- [ ] Textos y enlaces configurables desde admin.
+
+### 16.10 Panel de administración – Contenido de inicio
+
+- [ ] Módulo "Contenido de inicio" en admin para:
+  - [ ] Hero (título, subtítulo, CTA, links sociales, imagen).
+  - [ ] Sobre mí (párrafo y bullets).
+  - [ ] Métricas.
+  - [ ] Selección de skills destacadas.
+  - [ ] Activar/desactivar secciones del home.
+- [ ] Asegurar que solo tú (rol admin) puedes acceder a este módulo.
+
+### 16.11 Backend / API específicos de Fase 2
+
+- [ ] Endpoints CRUD para skills.
+- [ ] Endpoints CRUD para testimonios.
+- [ ] Endpoints para settings de home (hero, about, métricas, enlaces, secciones activas).
+- [ ] Extender endpoints de proyectos con campos `isFeatured`, `isPublic`, screenshots.
+- [ ] Validaciones de backend (longitud de textos, URLs válidas, etc.).
+- [ ] Documentar nuevos endpoints en la guía de API para el frontend.
+
+### 16.12 Frontend Angular – Integración Fase 2
+
+- [ ] Servicios Angular para consumir contenido de inicio (HomeContentApiService, SkillsApiService, etc.).
+- [ ] Estado con signals para home (loading, error, success).
+- [ ] Skeleton loaders y mensajes de error amigables en el inicio.
+- [ ] Páginas/Componentes de admin (si admin también se maneja desde Angular) o integración con vistas existentes de Laravel.
+
+### 16.13 Diseño visual moderno y responsive
+
+- [ ] Revisar tipografía global (ej. Inter, Manrope) y aplicarla.
+- [ ] Ajustar paleta de colores a un look profesional y legible.
+- [ ] Usar grids y flex responsivos para cada sección (Tailwind).
+- [ ] Mantener buen espaciado y jerarquía visual en mobile y desktop.
+- [ ] Respetar y mejorar el modo oscuro actual.
+
+### 16.14 SEO, accesibilidad y analítica en el inicio
+
+- [ ] Títulos y meta tags optimizados (nombre + rol + stack + "portafolio").
+- [ ] Uso correcto de h1/h2/h3 en la landing.
+- [ ] Alt text en imágenes de hero y proyectos.
+- [ ] Integrar analytics básico (Google Analytics u otra opción).
+- [ ] Medir clics en CTA principales (Ver proyectos, Descargar CV, Contacto).

@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 import { of, throwError } from 'rxjs';
 import { AuthPage } from './auth.page';
@@ -18,6 +19,7 @@ describe('AuthPage', () => {
 	let component: AuthPage;
 	let authApi: AuthApiServiceMock;
 	let authState: AuthStateServiceMock;
+	let router: Router;
 
 	beforeEach(() => {
 		authApi = new AuthApiServiceMock();
@@ -33,6 +35,7 @@ describe('AuthPage', () => {
 
 		const fixture = TestBed.createComponent(AuthPage);
 		component = fixture.componentInstance;
+		router = TestBed.inject(Router);
 	});
 
 	it('no debe llamar a login si el formulario es inválido', () => {
@@ -54,6 +57,17 @@ describe('AuthPage', () => {
 			email: 'user@example.com',
 			password: '123456'
 		});
+	});
+
+	it('debe navegar a /dashboard tras login exitoso sin redirectTo', () => {
+		const navigateSpy = vi.spyOn(router, 'navigateByUrl');
+
+		authApi.login.mockReturnValue(of({ user: null, token: 't', message: 'ok' } as any));
+
+		component.loginForm.setValue({ email: 'user2@example.com', password: 'abcdef' });
+		component.onLoginSubmit();
+
+		expect(navigateSpy).toHaveBeenCalledWith('/dashboard');
 	});
 });
 
