@@ -9,6 +9,16 @@
       <a routerLink="/home" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Portafolio</a>
       <a href="#features" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Funciones</a>
       <a href="#integrations" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Integraciones</a>
+
+      @if (isAuthenticated()) {
+        <span class="h-5 w-px bg-gray-200 dark:bg-gray-700" aria-hidden="true"></span>
+        <a routerLink="/dashboard" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Dashboard</a>
+        <a routerLink="/catalog" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Catálogo</a>
+        <a routerLink="/projects/wizard" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Nuevo proyecto</a>
+        <a routerLink="/notifications" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Notificaciones</a>
+        <a routerLink="/profile" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Perfil</a>
+        <a routerLink="/settings" routerLinkActive="text-primary-600" class="text-gray-700 dark:text-gray-200 hover:text-primary-600">Configuración</a>
+      }
     </nav>
     <div class="hidden md:flex items-center gap-2">
       <button (click)="toggleTheme()" class="text-sm px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800" aria-label="Cambiar tema">
@@ -36,6 +46,15 @@
       <a routerLink="/home" (click)="close()" class="text-gray-700 dark:text-gray-200">Portafolio</a>
       <a href="#features" (click)="close()" class="text-gray-700 dark:text-gray-200">Funciones</a>
       <a href="#integrations" (click)="close()" class="text-gray-700 dark:text-gray-200">Integraciones</a>
+      @if (isAuthenticated()) {
+        <hr class="border-gray-200 dark:border-gray-700" />
+        <a routerLink="/dashboard" (click)="close()" class="text-gray-700 dark:text-gray-200">Dashboard</a>
+        <a routerLink="/catalog" (click)="close()" class="text-gray-700 dark:text-gray-200">Catálogo</a>
+        <a routerLink="/projects/wizard" (click)="close()" class="text-gray-700 dark:text-gray-200">Nuevo proyecto</a>
+        <a routerLink="/notifications" (click)="close()" class="text-gray-700 dark:text-gray-200">Notificaciones</a>
+        <a routerLink="/profile" (click)="close()" class="text-gray-700 dark:text-gray-200">Perfil</a>
+        <a routerLink="/settings" (click)="close()" class="text-gray-700 dark:text-gray-200">Configuración</a>
+      }
       <button (click)="toggleTheme()" class="px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-100">{{ isDark() ? 'Light' : 'Dark' }}</button>
       @if (!isAuthenticated()) {
         <a routerLink="/auth" (click)="close()" class="px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 text-gray-800 dark:text-gray-100">Iniciar sesión</a>

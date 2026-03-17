@@ -34,6 +34,16 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/catalog/catalog.routes').then((m) => m.CATALOG_ROUTES)
   },
   {
+    path: 'projects/wizard',
+    canActivate: [authGuard],
+    loadChildren: () => import('./pages/project-wizard/project-wizard.routes').then((m) => m.PROJECT_WIZARD_ROUTES)
+  },
+  {
+    path: 'notifications',
+    canActivate: [authGuard],
+    loadChildren: () => import('./pages/notifications/notifications.routes').then((m) => m.NOTIFICATIONS_ROUTES)
+  },
+  {
     path: 'not-found',
     loadComponent: () => import('./pages/not-found/not-found.page').then((m) => m.NotFoundPage)
   },

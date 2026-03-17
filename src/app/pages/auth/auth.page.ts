@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
 import { FormErrorComponent } from '../../components/form-error/form-error.component';
+import { emailAvailabilityValidator } from '../../infrastructure/validators/email-availability.validator';
 import { AuthApiService } from '../../infrastructure/services/auth-api.service';
 import { AuthStateService } from '../../infrastructure/services/auth-state.service';
 import { LoginPayload, RegisterPayload } from '../../infrastructure/models/api-auth.model';

@@ -21,7 +21,7 @@
             type="search"
             class="flex-1 rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
             placeholder="Buscar proyectos…"
-            (input)="onSearch(($event.target as HTMLInputElement).value)"
+            (input)="onSearch($any($event.target).value ?? '')"
           />
           <ui-button variant="default" label="Limpiar" type="button" (click)="clearSearch()"></ui-button>
         </div>
@@ -34,7 +34,7 @@
         <select
           id="sortBy"
           class="block w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
-          (change)="changeSort(($event.target as HTMLSelectElement).value as any)"
+          (change)="changeSort($any($event.target).value)"
         >
           <option value="recent">Más recientes</option>
           <option value="title">Título (A-Z)</option>

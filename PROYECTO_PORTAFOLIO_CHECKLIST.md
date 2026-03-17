@@ -113,7 +113,7 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 ## 10. Seguridad (Front)
 
-- [ ] No exponer secretos en el frontend (API keys sensibles, tokens, etc.).
+- [x] No exponer secretos en el frontend (API keys sensibles, tokens, etc.).
 - [x] Uso de `HttpInterceptor` (o similar) para adjuntar tokens y manejar expiraciones.
 - [ ] Sanitización y escape de contenido dinámico cuando sea necesario.
 - [ ] Política de CORS, headers de seguridad y HTTPS considerados (documentado aunque se configure en backend/nginx).
@@ -122,9 +122,9 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 ## 11. Testing
 
-- [ ] Configuración básica de testing lista (`jest`/`karma`/`vitest` según el stack actual).
-- [ ] Tests unitarios para componentes clave (render básico + lógica importante).
-- [ ] Tests unitarios para servicios (lógica de negocio, mapping de datos, manejo de errores).
+- [x] Configuración básica de testing lista (`jest`/`karma`/`vitest` según el stack actual).
+- [x] Tests unitarios para componentes clave (render básico + lógica importante).
+- [x] Tests unitarios para servicios (lógica de negocio, mapping de datos, manejo de errores).
 - [ ] Tests de integración o e2e mínimos para flujos críticos (login, registro, flujo principal de la app).
 - [ ] Cobertura mínima de código alcanzada (por ejemplo, >70%) o justificada.
 
@@ -161,8 +161,8 @@ Para que tu proyecto "tenga de todo" y muestre experiencia senior:
 - [x] **Módulo Perfil de Usuario**: edición de datos, avatar, preferencias.
 - [x] **Módulo Configuración**: opciones del sistema/usuario (tema oscuro/claro, idioma, etc.).
 - [x] **Módulo Catálogo/Listado**: listados con filtros avanzados, ordenamiento y detalle.
-- [ ] **Módulo Formularios Complejos**: formularios multi-step, validaciones avanzadas, resumen final.
-- [ ] **Módulo Notificaciones**: toasts, banners, estado leído/no leído.
+- [x] **Módulo Formularios Complejos**: formularios multi-step, validaciones avanzadas, resumen final.
+- [x] **Módulo Notificaciones**: toasts, banners, estado leído/no leído.
 
 Marca qué módulos implementarás y documenta las decisiones de cada uno.
 
@@ -170,9 +170,9 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 
 ## 15. Preparación para Portafolio y Entrevistas
 
-- [ ] Story corta del proyecto: problema, solución, usuarios objetivo.
-- [ ] Lista de decisiones técnicas "senior" que tomaste y por qué.
-- [ ] Sección en README explicando retos técnicos y cómo los resolviste.
+- [x] Story corta del proyecto: problema, solución, usuarios objetivo.
+- [x] Lista de decisiones técnicas "senior" que tomaste y por qué.
+- [x] Sección en README explicando retos técnicos y cómo los resolviste.
 - [ ] Deploy a un entorno accesible (por ejemplo, Vercel/Netlify/Render) o captura de video detallada.
 - [ ] Enlace listo para poner en tu CV/LinkedIn/portafolio.
 

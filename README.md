@@ -77,12 +77,40 @@ La comunicación con el backend Laravel se hace vía servicios HTTP tipados (por
 - Catálogo de proyectos con búsqueda, filtros por tags y ordenación.
 - Manejo de estados de carga, error y vacío en las vistas clave.
 
+### Formularios complejos y notificaciones
+
+- Wizard multi-step para crear un proyecto, con validaciones por paso y resumen final.
+- Centro de notificaciones en memoria, con soporte a estado leído/no leído.
+
 ## Capturas / demo
 
 - TODO: añadir capturas en `docs/screenshots/` (por ejemplo, `dashboard.png`, `profile.png`, `catalog.png`) y/o enlace a vídeo de demo.
 
-## Próximos pasos sugeridos
+## Historia del proyecto
 
-- Completar módulo de formularios complejos (wizard de creación/edición de proyecto).
-- Implementar sistema de notificaciones (toasts + listado) integrado con la API.
-- Desplegar el proyecto (Vercel/Netlify/otro) y enlazarlo desde este README.
+Este proyecto nace de la necesidad de tener un único portafolio frontend que demuestre, en un mismo lugar, módulos típicos de aplicaciones reales: autenticación, panel de control, perfil, configuración, catálogo y formularios avanzados.
+
+La solución es una SPA/SSR ligera en Angular, conectada a un backend Laravel, que sirve como base de conversación en entrevistas técnicas y como referencia de buenas prácticas.
+
+Usuarios objetivo: reclutadores técnicos, líderes de equipo y cualquier persona que quiera evaluar experiencia real en desarrollo frontend moderno.
+
+## Decisiones técnicas "senior"
+
+- Uso de Angular standalone + routing lazy para reducir boilerplate y modularizar por feature.
+- Estado por página encapsulado en servicios con signals (en lugar de global store pesado) para mantener simpleza con escalabilidad.
+- Interceptores HTTP para gestionar autenticación (token) y manejo global de errores.
+- Formularios reactivos para flujos críticos (auth, perfil, settings, wizard) con validación síncrona y asíncrona.
+- Separación clara entre componentes de presentación (UI) y servicios de infraestructura (HTTP, estado, mapeos).
+- Tests unitarios sobre servicios y componentes clave usando Vitest.
+
+## Retos técnicos y cómo se abordaron
+
+- Integrar el frontend Angular con un backend Laravel manteniendo contratos de API tipados desde el lado del cliente.
+- Diseñar un sistema de estado basado en signals que sea simple pero permita manejar estados de carga, error, vacío y éxito.
+- Asegurar una arquitectura limpia (páginas, componentes, infrastructure, layout) que pueda crecer con nuevos módulos.
+
+## Deploy
+
+- TODO: desplegar en Vercel/Netlify/otro proveedor y enlazar aquí la URL pública.
+
+Mientras tanto, este README sirve como guía para clonar, levantar en local y explorar el código.
