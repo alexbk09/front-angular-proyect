@@ -4,6 +4,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
+import { FormErrorComponent } from '../../components/form-error/form-error.component';
 import { AuthApiService } from '../../infrastructure/services/auth-api.service';
 import { AuthStateService } from '../../infrastructure/services/auth-state.service';
 import { LoginPayload, RegisterPayload } from '../../infrastructure/models/api-auth.model';
@@ -11,7 +12,7 @@ import { LoginPayload, RegisterPayload } from '../../infrastructure/models/api-a
 @Component({
   selector: 'app-auth-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CardComponent, ButtonComponent, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, CardComponent, ButtonComponent, FormErrorComponent, RouterLink],
   templateUrl: './auth.page.html',
   styleUrl: './auth.page.scss'
 })

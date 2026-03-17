@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
 import { CardComponent } from '../../components/card/card.component';
 import { ButtonComponent } from '../../components/button/button.component';
+import { FormErrorComponent } from '../../components/form-error/form-error.component';
 import { ProfileApiService, UpdateProfilePayload } from '../../infrastructure/services/auth-api.service';
 import { UserProfileDto } from '../../infrastructure/models/api-user-profile.model';
 import { ThemeService } from '../../infrastructure/services/theme.service';
@@ -10,7 +11,7 @@ import { ThemeService } from '../../infrastructure/services/theme.service';
 @Component({
   selector: 'app-profile-page',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, CardComponent, ButtonComponent],
+  imports: [CommonModule, ReactiveFormsModule, CardComponent, ButtonComponent, FormErrorComponent],
   templateUrl: './profile.page.html'
 })
 export class ProfilePage implements OnInit {

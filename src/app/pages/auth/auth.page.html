@@ -35,6 +35,13 @@
               class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="tu@email.com"
             />
+            <ui-form-error
+              [control]="loginForm.get('email')"
+              [messages]="{
+                required: 'El correo es obligatorio.',
+                email: 'Introduce un correo electrónico válido.'
+              }"
+            ></ui-form-error>
           </div>
 
           <div class="space-y-1">
@@ -46,6 +53,13 @@
               class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="••••••••"
             />
+            <ui-form-error
+              [control]="loginForm.get('password')"
+              [messages]="{
+                required: 'La contraseña es obligatoria.',
+                minlength: 'La contraseña debe tener al menos 6 caracteres.'
+              }"
+            ></ui-form-error>
           </div>
 
           <div class="pt-2">
@@ -70,6 +84,13 @@
               class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="Tu nombre"
             />
+            <ui-form-error
+              [control]="registerForm.get('name')"
+              [messages]="{
+                required: 'El nombre es obligatorio.',
+                minlength: 'El nombre debe tener al menos 2 caracteres.'
+              }"
+            ></ui-form-error>
           </div>
 
           <div class="space-y-1">
@@ -81,6 +102,13 @@
               class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="tu@email.com"
             />
+            <ui-form-error
+              [control]="registerForm.get('email')"
+              [messages]="{
+                required: 'El correo es obligatorio.',
+                email: 'Introduce un correo electrónico válido.'
+              }"
+            ></ui-form-error>
           </div>
 
           <div class="space-y-1">
@@ -92,6 +120,13 @@
               class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="••••••••"
             />
+            <ui-form-error
+              [control]="registerForm.get('password')"
+              [messages]="{
+                required: 'La contraseña es obligatoria.',
+                minlength: 'La contraseña debe tener al menos 6 caracteres.'
+              }"
+            ></ui-form-error>
           </div>
 
           <div class="space-y-1">
@@ -103,6 +138,13 @@
               class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
               placeholder="••••••••"
             />
+            <ui-form-error
+              [control]="registerForm.get('password_confirmation')"
+              [messages]="{
+                required: 'Confirma tu contraseña.',
+                minlength: 'La contraseña debe tener al menos 6 caracteres.'
+              }"
+            ></ui-form-error>
           </div>
 
           <div class="space-y-1">

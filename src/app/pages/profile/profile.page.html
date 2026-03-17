@@ -61,6 +61,7 @@
             <img
               [src]="profile()!.profile!.avatarUrl!"
               alt="Avatar del usuario"
+              loading="lazy"
               class="h-16 w-16 rounded-full object-cover border border-slate-200 dark:border-slate-700"
             />
           }
@@ -148,11 +149,10 @@
                     formControlName="name"
                     class="block w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                   />
-                  @if (profileForm.get('name')?.touched && profileForm.get('name')?.invalid) {
-                    <p class="text-xs text-red-600 dark:text-red-300">
-                      El nombre es obligatorio.
-                    </p>
-                  }
+                  <ui-form-error
+                    [control]="profileForm.get('name')"
+                    [messages]="{ required: 'El nombre es obligatorio.' }"
+                  ></ui-form-error>
                 </div>
 
                 <div class="space-y-1">
@@ -165,11 +165,13 @@
                     formControlName="email"
                     class="block w-full rounded-lg border border-slate-200 bg-white px-3 py-2 text-sm text-slate-900 shadow-sm outline-none transition focus-visible:ring-2 focus-visible:ring-primary-500 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-100"
                   />
-                  @if (profileForm.get('email')?.touched && profileForm.get('email')?.invalid) {
-                    <p class="text-xs text-red-600 dark:text-red-300">
-                      Introduce un correo electrónico válido.
-                    </p>
-                  }
+                  <ui-form-error
+                    [control]="profileForm.get('email')"
+                    [messages]="{
+                      required: 'El correo es obligatorio.',
+                      email: 'Introduce un correo electrónico válido.'
+                    }"
+                  ></ui-form-error>
                 </div>
               </div>
 

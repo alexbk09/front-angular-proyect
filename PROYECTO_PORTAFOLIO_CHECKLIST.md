@@ -74,18 +74,18 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 ## 6. Componentización
 
-- [ ] Componentes pequeños, con una sola responsabilidad.
-- [ ] Inputs/outputs bien definidos y tipados; sin "prop drilling" excesivo.
-- [ ] Uso de componentes compartidos para UI repetida (buttons, cards, forms, layout, etc.).
-- [ ] Estilos encapsulados por componente (SCSS/CSS Modules o estilos por componente en Angular).
-- [ ] Evitar duplicación de código en plantillas y lógica.
+- [x] Componentes pequeños, con una sola responsabilidad.
+- [x] Inputs/outputs bien definidos y tipados; sin "prop drilling" excesivo.
+- [x] Uso de componentes compartidos para UI repetida (buttons, cards, forms, layout, etc.).
+- [x] Estilos encapsulados por componente (SCSS/CSS Modules o estilos por componente en Angular).
+- [x] Evitar duplicación de código en plantillas y lógica.
 
 ---
 
 ## 7. Gestión de Estado y Datos
 
 - [x] Servicios centralizados para llamadas HTTP y cache básico cuando aplique.
-- [ ] Manejo de errores global (interceptors, handlers) y por componente.
+- [x] Manejo de errores global (interceptors, handlers) y por componente.
 - [x] Estados de carga (`loading`), vacío (`empty`), error (`error`), datos (`success`) claramente representados en la UI.
 - [x] Uso de tipos para respuestas de API y request bodies.
 - [x] Evitar lógica compleja en plantillas: moverla a métodos/lógica de componentes o servicios.
@@ -96,7 +96,7 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 - [x] Uso de formularios reactivos o template-driven con estructura clara.
 - [ ] Validaciones síncronas y asíncronas bien definidas y tipadas.
-- [ ] Mensajes de error de validación claros, amigables y accesibles.
+- [x] Mensajes de error de validación claros, amigables y accesibles.
 - [x] Manejo de envío múltiple (deshabilitar botón, mostrar loading, etc.).
 
 ---
@@ -104,7 +104,7 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 ## 9. Performance
 
 - [x] Lazy loading de módulos/rutas pesadas.
-- [ ] Carga diferida de imágenes (`lazy`), assets pesados optimizados.
+- [x] Carga diferida de imágenes (`lazy`), assets pesados optimizados.
 - [ ] Uso de `trackBy` en listas *ngFor (o equivalente) para evitar renders innecesarios.
 - [ ] Evitar recalcular datos caros en template; usar pipes puros o memoización.
 - [ ] Build de producción verificado (tamaños de bundles razonables).
