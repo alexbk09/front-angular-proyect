@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './infrastructure/guards/auth.guard';
 import { InicioPage } from './pages/inicio/inicio.page';
 
 export const routes: Routes = [
@@ -14,18 +15,22 @@ export const routes: Routes = [
   },
   {
     path: 'dashboard',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/dashboard/dashboard.routes').then((m) => m.DASHBOARD_ROUTES)
   },
   {
     path: 'profile',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/profile/profile.routes').then((m) => m.PROFILE_ROUTES)
   },
   {
     path: 'settings',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/settings/settings.routes').then((m) => m.SETTINGS_ROUTES)
   },
   {
     path: 'catalog',
+    canActivate: [authGuard],
     loadChildren: () => import('./pages/catalog/catalog.routes').then((m) => m.CATALOG_ROUTES)
   },
   {

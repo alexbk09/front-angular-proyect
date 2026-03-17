@@ -10,4 +10,5 @@ import { CommonModule } from '@angular/common';
 export class ButtonComponent {
   @Input() variant: 'primary' | 'secondary' | 'default' = 'primary';
   @Input() label = 'Button';
+  @Input() type: 'button' | 'submit' | 'reset' = 'button';
 }

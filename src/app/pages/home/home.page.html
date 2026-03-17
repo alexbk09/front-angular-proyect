@@ -31,10 +31,14 @@
     </div>
   }
   @else if (hasError()) {
-    <div class="rounded-xl border border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/60 dark:text-red-200 p-4 max-w-xl">
+    <div
+      class="rounded-xl border border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/60 dark:text-red-200 p-4 max-w-xl"
+      role="alert"
+      aria-live="polite"
+    >
       <h3 class="font-semibold mb-1">No se pudieron cargar los proyectos</h3>
       <p class="text-sm mb-3">{{ errorMessage() || 'Inténtalo de nuevo más tarde.' }}</p>
-      <ui-button variant="default" label="Reintentar"></ui-button>
+      <ui-button variant="default" label="Reintentar" (click)="reload()"></ui-button>
     </div>
   }
   @else if (projects().length === 0) {

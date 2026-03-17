@@ -1,18 +1,136 @@
 <section class="min-h-[calc(100vh-8rem)] flex items-center justify-center px-4 py-8">
   <div class="w-full max-w-md">
-    <ui-card title="Autenticación">
-      <p class="text-sm text-gray-700 dark:text-gray-300 mb-4">
-        Módulo preparado para integrar formularios reactivos de login y registro.
-      </p>
-      <div class="space-y-3">
-        <ui-button variant="primary" label="Iniciar sesión (próximamente)"></ui-button>
-        <ui-button variant="default" label="Crear cuenta (próximamente)"></ui-button>
+    <ui-card [title]="isLoginMode() ? 'Iniciar sesión' : 'Crear cuenta'">
+      <div class="flex gap-2 mb-4">
+        <ui-button
+          [variant]="isLoginMode() ? 'primary' : 'default'"
+          label="Iniciar sesión"
+          (click)="switchToLogin()"
+        ></ui-button>
+        <ui-button
+          [variant]="!isLoginMode() ? 'primary' : 'default'"
+          label="Crear cuenta"
+          (click)="switchToRegister()"
+        ></ui-button>
       </div>
+
+      @if (errorMessage()) {
+        <div
+          class="mb-4 rounded-md border border-red-200 bg-red-50 text-red-800 dark:border-red-900 dark:bg-red-950/60 dark:text-red-200 px-3 py-2 text-sm"
+          role="alert"
+          aria-live="polite"
+        >
+          {{ errorMessage() }}
+        </div>
+      }
+
+      @if (isLoginMode()) {
+        <form [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()" class="space-y-4">
+          <div class="space-y-1">
+            <label for="login-email" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Correo electrónico</label>
+            <input
+              id="login-email"
+              type="email"
+              formControlName="email"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              placeholder="tu@email.com"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <label for="login-password" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Contraseña</label>
+            <input
+              id="login-password"
+              type="password"
+              formControlName="password"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div class="pt-2">
+            <ui-button
+              type="submit"
+              [variant]="'primary'"
+              [label]="isSubmitting() ? 'Iniciando sesión…' : 'Iniciar sesión'"
+              [attr.aria-busy]="isSubmitting()"
+              [attr.disabled]="loginForm.invalid || isSubmitting() ? true : null"
+            ></ui-button>
+          </div>
+        </form>
+      }
+      @else {
+        <form [formGroup]="registerForm" (ngSubmit)="onRegisterSubmit()" class="space-y-4">
+          <div class="space-y-1">
+            <label for="register-name" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Nombre completo</label>
+            <input
+              id="register-name"
+              type="text"
+              formControlName="name"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              placeholder="Tu nombre"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <label for="register-email" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Correo electrónico</label>
+            <input
+              id="register-email"
+              type="email"
+              formControlName="email"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              placeholder="tu@email.com"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <label for="register-password" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Contraseña</label>
+            <input
+              id="register-password"
+              type="password"
+              formControlName="password"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <label for="register-password-confirmation" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Confirmar contraseña</label>
+            <input
+              id="register-password-confirmation"
+              type="password"
+              formControlName="password_confirmation"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+              placeholder="••••••••"
+            />
+          </div>
+
+          <div class="space-y-1">
+            <label for="register-role" class="block text-sm font-medium text-slate-700 dark:text-slate-200">Rol</label>
+            <select
+              id="register-role"
+              formControlName="role"
+              class="w-full rounded-md border border-slate-300 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500"
+            >
+              <option value="freelancer">Freelancer</option>
+              <option value="client">Client</option>
+            </select>
+          </div>
+
+          <div class="pt-2">
+            <ui-button
+              type="submit"
+              [variant]="'primary'"
+              [label]="isSubmitting() ? 'Creando cuenta…' : 'Crear cuenta'"
+              [attr.aria-busy]="isSubmitting()"
+              [attr.disabled]="registerForm.invalid || isSubmitting() ? true : null"
+            ></ui-button>
+          </div>
+        </form>
+      }
+
       <p class="text-xs text-gray-500 dark:text-gray-400 mt-4">
-        TODO: implementar formularios con validaciones, feedback de error y conexión a API real.
-      </p>
-      <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">
-        Mientras tanto, puedes explorar los <a routerLink="/home" class="underline hover:text-primary-600">proyectos del portafolio</a>.
+        También puedes explorar los <a routerLink="/home" class="underline hover:text-primary-600">proyectos del portafolio</a> sin iniciar sesión.
       </p>
     </ui-card>
   </div>

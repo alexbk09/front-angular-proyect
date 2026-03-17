@@ -1,35 +1,16 @@
-import { Injectable, computed, signal } from '@angular/core';
+﻿import { Injectable, computed, signal, inject } from '@angular/core';
 import { Project } from '../models/project.model';
+import { ProjectsApiService } from './auth-api.service';
 
 @Injectable({ providedIn: 'root' })
 export class HomeStateService {
-  private readonly projects = signal<Project[]>([
-    {
-      id: 'p1',
-      title: 'Landing page personal',
-      description: 'Página de inicio optimizada con Tailwind y Angular Signals.',
-      tags: ['Angular 21', 'TailwindCSS', 'Signals'],
-      highlight: true
-    },
-    {
-      id: 'p2',
-      title: 'Dashboard de métricas',
-      description: 'Dashboard con tarjetas, gráficos y manejo de estado reactivo.',
-      tags: ['Componentes UI', 'Estado local'],
-      highlight: true
-    },
-    {
-      id: 'p3',
-      title: 'Formularios avanzados',
-      description: 'Flujos multi-step con validaciones reactivas listas para escalar.',
-      tags: ['Forms', 'UX', 'Validaciones'],
-      highlight: false
-    }
-  ]);
+  private readonly projectsApi = inject(ProjectsApiService);
+
+  private readonly projects = signal<Project[]>([]);
 
   readonly filter = signal<'all' | 'featured'>('all');
 
-  readonly status = signal<'idle' | 'loading' | 'success' | 'error'>('success');
+  readonly status = signal<'idle' | 'loading' | 'success' | 'error'>('idle');
   readonly error = signal<string | null>(null);
 
   readonly isLoading = computed(() => this.status() === 'loading');
@@ -56,5 +37,29 @@ export class HomeStateService {
   clearError(): void {
     this.error.set(null);
     this.status.set('success');
+  }
+
+  loadProjects(): void {
+    this.status.set('loading');
+    this.error.set(null);
+
+    this.projectsApi.listProjects().subscribe({
+      next: (response) => {
+        const mapped: Project[] = response.data.map((dto) => ({
+          id: String(dto.id),
+          title: dto.title,
+          description: dto.description,
+          tags: dto.tags,
+          highlight: dto.highlight
+        }));
+
+        this.projects.set(mapped);
+        this.status.set('success');
+      },
+      error: () => {
+        this.projects.set([]);
+        this.setError('No se pudieron cargar los proyectos.');
+      }
+    });
   }
 }

@@ -22,53 +22,53 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 ## 1. Base del Proyecto
 
-- [ ] Proyecto creado con la última versión estable del framework (Angular) o versión alineada al mercado.
-- [ ] Estructura de carpetas clara (`app`, `components`, `pages`, `services`, `models`, `utils`, `layout`, etc.).
-- [ ] Configuración de TypeScript estricta (`strict: true`).
-- [ ] Linter configurado (ESLint) con reglas coherentes.
-- [ ] Formateador automático (Prettier o equivalente) integrado.
-- [ ] Scripts de npm para: `start`, `build`, `test`, `lint`, `format`.
+- [x] Proyecto creado con la última versión estable del framework (Angular) o versión alineada al mercado.
+- [x] Estructura de carpetas clara (`app`, `components`, `pages`, `services`, `models`, `utils`, `layout`, etc.).
+- [x] Configuración de TypeScript estricta (`strict: true`).
+- [x] Linter configurado (ESLint) con reglas coherentes.
+- [x] Formateador automático (Prettier o equivalente) integrado.
+- [x] Scripts de npm para: `start`, `build`, `test`, `lint`, `format`.
 
 ---
 
 ## 2. Arquitectura y Escalabilidad
 
-- [ ] Separación clara entre **presentational components** y **smart/containers**.
-- [ ] Servicios para lógica de negocio y acceso a datos (HTTP, storage, etc.).
-- [ ] Modelos de datos tipados (interfaces/types) centralizados.
-- [ ] Uso de un patrón de estado (por ejemplo: servicios con `BehaviorSubject`, NgRx, Signal Store o similar) en vistas complejas.
-- [ ] Módulos o features independientes (ej.: `auth`, `dashboard`, `profile`, `settings`, etc.).
-- [ ] Inyección de dependencias usada correctamente para favorecer testeo y desac acoplamiento.
+- [x] Separación clara entre **presentational components** y **smart/containers**.
+- [x] Servicios para lógica de negocio y acceso a datos (HTTP, storage, etc.).
+- [x] Modelos de datos tipados (interfaces/types) centralizados.
+- [x] Uso de un patrón de estado (por ejemplo: servicios con `BehaviorSubject`, NgRx, Signal Store o similar) en vistas complejas.
+- [x] Módulos o features independientes (ej.: `auth`, `dashboard`, `profile`, `settings`, etc.).
+- [x] Inyección de dependencias usada correctamente para favorecer testeo y desac acoplamiento.
 
 ---
 
 ## 3. Diseño UX/UI y Diseño Visual
 
-- [ ] Definición de un **design system** básico: colores, tipografías, espaciados, bordes, sombras.
-- [ ] Uso consistente de componentes UI reutilizables (botones, inputs, cards, modales, etc.).
-- [ ] Layout responsivo (mobile-first) probado en varios tamaños de pantalla.
-- [ ] Navegación clara (header, menú, breadcrumb, footer) coherente en todas las páginas.
-- [ ] Feedback visual para estados de carga, éxito y error.
-- [ ] Transiciones y microinteracciones suaves pero discretas (no exageradas).
+- [x] Definición de un **design system** básico: colores, tipografías, espaciados, bordes, sombras.
+- [x] Uso consistente de componentes UI reutilizables (botones, inputs, cards, modales, etc.).
+- [x] Layout responsivo (mobile-first) probado en varios tamaños de pantalla.
+- [x] Navegación clara (header, menú, breadcrumb, footer) coherente en todas las páginas.
+- [x] Feedback visual para estados de carga, éxito y error.
+- [x] Transiciones y microinteracciones suaves pero discretas (no exageradas).
 
 ---
 
 ## 4. Accesibilidad (A11y)
 
-- [ ] Uso correcto de etiquetas semánticas HTML (`header`, `main`, `nav`, `section`, `article`, `footer`).
-- [ ] Texto alternativo en imágenes importantes (`alt`).
-- [ ] Contraste de colores suficiente (WCAG AA como mínimo).
-- [ ] Navegación por teclado funcional (focus visible e intuitivo).
-- [ ] Uso de `aria-*` donde sea necesario (modales, alerts, tooltips, etc.).
+- [x] Uso correcto de etiquetas semánticas HTML (`header`, `main`, `nav`, `section`, `article`, `footer`).
+- [x] Texto alternativo en imágenes importantes (`alt`).
+- [x] Contraste de colores suficiente (WCAG AA como mínimo).
+- [x] Navegación por teclado funcional (focus visible e intuitivo).
+- [x] Uso de `aria-*` donde sea necesario (modales, alerts, tooltips, etc.).
 
 ---
 
 ## 5. Ruteo y Flujo de Navegación
 
-- [ ] Rutas organizadas por módulos/páginas (lazy loading cuando aplique).
-- [ ] Manejo de rutas privadas (auth guard) y públicas.
-- [ ] Página de 404 personalizada y amigable.
-- [ ] Redirecciones bien definidas (por ejemplo al iniciar sesión o cerrar sesión).
+- [x] Rutas organizadas por módulos/páginas (lazy loading cuando aplique).
+- [x] Manejo de rutas privadas (auth guard) y públicas.
+- [x] Página de 404 personalizada y amigable.
+- [x] Redirecciones bien definidas (por ejemplo al iniciar sesión o cerrar sesión).
 
 ---
 
@@ -84,26 +84,26 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 ## 7. Gestión de Estado y Datos
 
-- [ ] Servicios centralizados para llamadas HTTP y cache básico cuando aplique.
+- [x] Servicios centralizados para llamadas HTTP y cache básico cuando aplique.
 - [ ] Manejo de errores global (interceptors, handlers) y por componente.
-- [ ] Estados de carga (`loading`), vacío (`empty`), error (`error`), datos (`success`) claramente representados en la UI.
-- [ ] Uso de tipos para respuestas de API y request bodies.
-- [ ] Evitar lógica compleja en plantillas: moverla a métodos/lógica de componentes o servicios.
+- [x] Estados de carga (`loading`), vacío (`empty`), error (`error`), datos (`success`) claramente representados en la UI.
+- [x] Uso de tipos para respuestas de API y request bodies.
+- [x] Evitar lógica compleja en plantillas: moverla a métodos/lógica de componentes o servicios.
 
 ---
 
 ## 8. Formularios y Validaciones
 
-- [ ] Uso de formularios reactivos o template-driven con estructura clara.
+- [x] Uso de formularios reactivos o template-driven con estructura clara.
 - [ ] Validaciones síncronas y asíncronas bien definidas y tipadas.
 - [ ] Mensajes de error de validación claros, amigables y accesibles.
-- [ ] Manejo de envío múltiple (deshabilitar botón, mostrar loading, etc.).
+- [x] Manejo de envío múltiple (deshabilitar botón, mostrar loading, etc.).
 
 ---
 
 ## 9. Performance
 
-- [ ] Lazy loading de módulos/rutas pesadas.
+- [x] Lazy loading de módulos/rutas pesadas.
 - [ ] Carga diferida de imágenes (`lazy`), assets pesados optimizados.
 - [ ] Uso de `trackBy` en listas *ngFor (o equivalente) para evitar renders innecesarios.
 - [ ] Evitar recalcular datos caros en template; usar pipes puros o memoización.
@@ -114,7 +114,7 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 ## 10. Seguridad (Front)
 
 - [ ] No exponer secretos en el frontend (API keys sensibles, tokens, etc.).
-- [ ] Uso de `HttpInterceptor` (o similar) para adjuntar tokens y manejar expiraciones.
+- [x] Uso de `HttpInterceptor` (o similar) para adjuntar tokens y manejar expiraciones.
 - [ ] Sanitización y escape de contenido dinámico cuando sea necesario.
 - [ ] Política de CORS, headers de seguridad y HTTPS considerados (documentado aunque se configure en backend/nginx).
 
@@ -156,9 +156,9 @@ Usa este checklist como guía viva. Márcalo por secciones y actualízalo según
 
 Para que tu proyecto "tenga de todo" y muestre experiencia senior:
 
-- [ ] **Módulo Auth**: login, registro, recuperación de contraseña, manejo de sesión.
-- [ ] **Módulo Dashboard**: métricas, gráficos, tablas filtrables y paginadas.
-- [ ] **Módulo Perfil de Usuario**: edición de datos, avatar, preferencias.
+- [x] **Módulo Auth**: login, registro, recuperación de contraseña, manejo de sesión.
+- [x] **Módulo Dashboard**: métricas, gráficos, tablas filtrables y paginadas.
+- [x] **Módulo Perfil de Usuario**: edición de datos, avatar, preferencias.
 - [ ] **Módulo Configuración**: opciones del sistema/usuario (tema oscuro/claro, idioma, etc.).
 - [ ] **Módulo Catálogo/Listado**: listados con filtros avanzados, ordenamiento y detalle.
 - [ ] **Módulo Formularios Complejos**: formularios multi-step, validaciones avanzadas, resumen final.

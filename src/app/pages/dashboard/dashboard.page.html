@@ -1,16 +1,182 @@
-<section class="container mx-auto py-8 space-y-4">
+<section class="container mx-auto py-8 space-y-6">
   <header class="space-y-2 max-w-2xl">
     <p class="text-xs font-semibold tracking-wide text-primary-600 uppercase">Dashboard</p>
-    <h2 class="text-3xl font-semibold">Panel de control (placeholder)</h2>
+    <h2 class="text-3xl font-semibold">Panel de control</h2>
     <p class="text-sm text-slate-600 dark:text-slate-300">
-      Aquí vivirán las métricas, gráficos y tablas filtrables de tu portafolio.
+      Resumen rápido de tus proyectos, actividad reciente y elementos destacados.
     </p>
   </header>
 
-  <ui-card title="Resumen del dashboard">
-    <p class="text-sm text-slate-600 dark:text-slate-300 mb-3">
-      TODO: conectar este dashboard con datos reales y añadir filtros avanzados.
-    </p>
-    <ui-button variant="primary" label="Ver diseño de ejemplo"></ui-button>
-  </ui-card>
+  <!-- Métricas principales -->
+  <section aria-label="Métricas principales del dashboard">
+    @if (metrics(); as m) {
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+        <ui-card title="Proyectos totales">
+          <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ m.totalProjects }}</p>
+          <p class="text-xs text-slate-500 mt-1">Incluye todos los proyectos visibles en tu portafolio.</p>
+        </ui-card>
+
+        <ui-card title="Proyectos destacados">
+          <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ m.featuredProjects }}</p>
+          <p class="text-xs text-slate-500 mt-1">Marcados como destacados para darles mayor visibilidad.</p>
+        </ui-card>
+
+        <ui-card title="Proyectos recientes">
+          <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ m.recentProjects }}</p>
+          <p class="text-xs text-slate-500 mt-1">Creados en los últimos 30 días.</p>
+        </ui-card>
+
+        <ui-card title="Vistas totales (mock)">
+          <p class="text-2xl font-semibold text-slate-900 dark:text-slate-100">{{ m.totalViews | number }}</p>
+          <p class="text-xs text-slate-500 mt-1">Conteo ficticio de vistas agregadas de todos los proyectos.</p>
+        </ui-card>
+      </div>
+    } @else {
+      <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-4" aria-hidden="true">
+        <div class="animate-pulse rounded-xl border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 h-24"></div>
+        <div class="animate-pulse rounded-xl border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 h-24"></div>
+        <div class="animate-pulse rounded-xl border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 h-24"></div>
+        <div class="animate-pulse rounded-xl border bg-slate-100 dark:bg-slate-800 border-slate-200 dark:border-slate-700 h-24"></div>
+      </div>
+    }
+  </section>
+
+  <!-- Tabla de proyectos con filtros y paginación -->
+  <section class="space-y-4" aria-label="Listado de proyectos del dashboard">
+    <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+      <h3 class="text-lg font-semibold text-slate-900 dark:text-slate-50">Proyectos</h3>
+
+      <div class="inline-flex rounded-lg border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 p-1">
+        <button
+          type="button"
+          class="px-3 py-1.5 text-xs font-medium rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          [class.bg-primary-600]="filter() === 'all'"
+          [class.text-white]="filter() === 'all'"
+          [class.text-slate-700]="filter() !== 'all'"
+          [class.dark\:text-slate-200]="filter() !== 'all'"
+          (click)="changeFilter('all')"
+        >
+          Todos
+        </button>
+        <button
+          type="button"
+          class="px-3 py-1.5 text-xs font-medium rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          [class.bg-primary-600]="filter() === 'featured'"
+          [class.text-white]="filter() === 'featured'"
+          [class.text-slate-700]="filter() !== 'featured'"
+          [class.dark\:text-slate-200]="filter() !== 'featured'"
+          (click)="changeFilter('featured')"
+        >
+          Destacados
+        </button>
+        <button
+          type="button"
+          class="px-3 py-1.5 text-xs font-medium rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+          [class.bg-primary-600]="filter() === 'recent'"
+          [class.text-white]="filter() === 'recent'"
+          [class.text-slate-700]="filter() !== 'recent'"
+          [class.dark\:text-slate-200]="filter() !== 'recent'"
+          (click)="changeFilter('recent')"
+        >
+          Recientes
+        </button>
+      </div>
+    </div>
+
+    @if (isLoading()) {
+      <div class="space-y-2" aria-hidden="true">
+        <div class="h-9 w-full rounded-md bg-slate-100 dark:bg-slate-800 animate-pulse"></div>
+        <div class="h-9 w-full rounded-md bg-slate-100 dark:bg-slate-800 animate-pulse"></div>
+        <div class="h-9 w-full rounded-md bg-slate-100 dark:bg-slate-800 animate-pulse"></div>
+      </div>
+    } @else {
+      @if (!hasItems()) {
+        <div class="rounded-xl border border-dashed border-slate-300 dark:border-slate-700 p-6 text-center text-sm text-slate-500 dark:text-slate-300">
+          No hay datos para este filtro.
+        </div>
+      } @else {
+        <div class="overflow-hidden rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900">
+          <div class="overflow-x-auto">
+            <table class="min-w-full text-left text-sm" aria-label="Tabla de proyectos">
+              <thead class="bg-slate-50 dark:bg-slate-800/60 text-xs font-semibold uppercase text-slate-500">
+                <tr>
+                  <th scope="col" class="px-4 py-3">Nombre</th>
+                  <th scope="col" class="px-4 py-3">Estado</th>
+                  <th scope="col" class="px-4 py-3">Fecha</th>
+                  <th scope="col" class="px-4 py-3">Tags</th>
+                  <th scope="col" class="px-4 py-3 text-right">Vistas (mock)</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-slate-100 dark:divide-slate-800">
+                @for (item of paginatedItems(); track item.id) {
+                  <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/60 transition-colors">
+                    <td class="px-4 py-3">
+                      <div class="flex flex-col">
+                        <span class="text-sm font-medium text-slate-900 dark:text-slate-50">{{ item.title }}</span>
+                        <span class="text-xs text-slate-500 dark:text-slate-400">ID: {{ item.id }}</span>
+                      </div>
+                    </td>
+                    <td class="px-4 py-3">
+                      <span
+                        class="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium"
+                        [class.bg-amber-100]="item.highlight"
+                        [class.text-amber-800]="item.highlight"
+                        [class.bg-slate-100]="!item.highlight"
+                        [class.text-slate-700]="!item.highlight"
+                      >
+                        {{ item.highlight ? 'Destacado' : 'Normal' }}
+                      </span>
+                    </td>
+                    <td class="px-4 py-3 text-sm text-slate-600 dark:text-slate-300">
+                      {{ item.createdAt | date: 'dd/MM/yyyy' }}
+                    </td>
+                    <td class="px-4 py-3">
+                      <div class="flex flex-wrap gap-1">
+                        @for (tag of item.tags; track tag) {
+                          <span class="inline-flex items-center rounded-full bg-slate-100 dark:bg-slate-800 px-2 py-0.5 text-[11px] font-medium text-slate-700 dark:text-slate-200">
+                            {{ tag }}
+                          </span>
+                        }
+                      </div>
+                    </td>
+                    <td class="px-4 py-3 text-right text-sm font-semibold text-slate-900 dark:text-slate-100">
+                      {{ item.views | number }}
+                    </td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Paginación -->
+          <div class="flex flex-col gap-2 border-t border-slate-100 dark:border-slate-800 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <p class="text-xs text-slate-500 dark:text-slate-400">
+              Página {{ page() }} de {{ totalPages() }} · {{ totalItems() }} elementos
+            </p>
+
+            <div class="flex items-center gap-2 justify-end">
+              <button
+                type="button"
+                class="inline-flex items-center rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                (click)="previousPage()"
+                [disabled]="page() <= 1"
+                aria-label="Ir a la página anterior"
+              >
+                Anterior
+              </button>
+              <button
+                type="button"
+                class="inline-flex items-center rounded-md border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-900 px-3 py-1.5 text-xs font-medium text-slate-700 dark:text-slate-200 disabled:opacity-50 disabled:cursor-not-allowed"
+                (click)="nextPage()"
+                [disabled]="page() >= totalPages()"
+                aria-label="Ir a la página siguiente"
+              >
+                Siguiente
+              </button>
+            </div>
+          </div>
+        </div>
+      }
+    }
+  </section>
 </section>
