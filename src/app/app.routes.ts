@@ -34,9 +34,25 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/settings/settings.routes').then((m) => m.SETTINGS_ROUTES)
   },
   {
+    path: 'contacto-form',
+    loadComponent: () => import('./components/contacto/formulario-contacto.component').then(m => m.FormularioContactoComponent)
+  },
+  {
     path: 'catalog',
     canActivate: [authGuard],
     loadChildren: () => import('./pages/catalog/catalog.routes').then((m) => m.CATALOG_ROUTES)
+  },
+  {
+    path: 'sobre-mi',
+    loadComponent: () => import('./components/sobre-mi/sobre-mi.component').then(m => m.SobreMiComponent)
+  },
+  {
+    path: 'skills',
+    loadComponent: () => import('./components/skills/skills.component').then(m => m.SkillsComponent)
+  },
+  {
+    path: 'contacto',
+    loadComponent: () => import('./components/contacto/contacto.component').then(m => m.ContactoComponent)
   },
   {
     path: 'proyectos',

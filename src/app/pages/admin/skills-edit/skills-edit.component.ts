@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { AdminMenuComponent } from '../../../pages/admin/admin-menu.component';
 import { FormBuilder, Validators, FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 // Suponiendo que existe un servicio similar para skills
@@ -9,7 +10,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'admin-skills-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AdminMenuComponent],
   templateUrl: './skills-edit.component.html',
   styleUrls: ['./skills-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -1,10 +1,12 @@
 import { Component, signal, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { ProyectosService } from './proyectos.service';
 import { Proyecto } from './proyecto.model';
 
 @Component({
   selector: 'app-proyectos',
   standalone: true,
+  imports: [CommonModule],
   templateUrl: './proyectos.component.html',
   styleUrls: ['./proyectos.component.css']
 })

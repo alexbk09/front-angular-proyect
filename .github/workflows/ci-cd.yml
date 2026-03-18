@@ -1,0 +1,41 @@
+name: CI/CD Angular Portfolio
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout código
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Instalar dependencias
+        run: npm ci
+        working-directory: ./front-angular-proyect
+
+      - name: Ejecutar tests
+        run: npm test -- --watch=false --browsers=ChromeHeadless
+        working-directory: ./front-angular-proyect
+
+      - name: Build de producción
+        run: npm run build
+        working-directory: ./front-angular-proyect
+
+      # Despliegue automático (ejemplo Netlify CLI, puedes cambiarlo por Vercel, FTP, etc.)
+      # - name: Deploy a Netlify
+      #   run: npx netlify deploy --dir=./dist --prod --auth=$NETLIFY_AUTH_TOKEN --site=$NETLIFY_SITE_ID
+      #   env:
+      #     NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      #     NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+
+# Personaliza la sección de despliegue según tu proveedor (Netlify, Vercel, FTP, etc.)
+# Agrega los secrets necesarios en la configuración de tu repositorio en GitHub.

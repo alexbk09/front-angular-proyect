@@ -1,4 +1,6 @@
-<form [formGroup]="form" (ngSubmit)="submit()" class="max-w-xl mx-auto p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-8">
+<div class="max-w-xl mx-auto">
+  <admin-menu></admin-menu>
+  <form [formGroup]="form" (ngSubmit)="submit()" class="p-6 bg-white dark:bg-gray-900 rounded-lg shadow space-y-8">
   <h2 class="text-2xl font-bold mb-4">Editar Skills</h2>
   <div formArrayName="skills" class="space-y-4">
     <div *ngFor="let skill of skillsArray.controls; let i = index" [formGroupName]="i" class="flex flex-wrap gap-4 items-end bg-gray-50 dark:bg-gray-800 p-4 rounded-lg shadow-sm">

@@ -8,6 +8,11 @@ export const ADMIN_ROUTES: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'hero-content-form',
+    loadComponent: () => import('../../features/admin/hero-content-form.component').then(m => m.HeroContentFormComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'skills',
     loadComponent: () => import('./skills-edit/skills-edit.component').then(m => m.SkillsEditComponent),
     canActivate: [authGuard]

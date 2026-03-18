@@ -184,12 +184,13 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 
 ## 16. Fase 2 – Landing, Admin y CRUD de Portafolio
 
+
 ### 16.1 Estrategia de contenido del inicio
 
-- [ ] Mensaje principal (1 frase) claro: qué haces y para quién.
-- [ ] Subtítulo con stack principal (Angular, Laravel, Tailwind, etc.).
-- [ ] Definir 3–4 tipos de problemas que resuelves (ej. dashboards, portales, sistemas internos).
-- [ ] Definir CTA principal del inicio ("Ver proyectos", "Descargar CV", "Agendar llamada").
+- [x] Mensaje principal (1 frase) claro: qué haces y para quién.
+- [x] Subtítulo con stack principal (Angular, Laravel, Tailwind, etc.).
+- [x] Definir 3–4 tipos de problemas que resuelves (ej. dashboards, portales, sistemas internos).
+- [x] Definir CTA principal del inicio ("Ver proyectos", "Descargar CV", "Agendar llamada").
 
 ### 16.2 Hero / Cabecera de inicio
 
@@ -301,3 +302,66 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 - [ ] Alt text en imágenes de hero y proyectos.
 - [ ] Integrar analytics básico (Google Analytics u otra opción).
 - [ ] Medir clics en CTA principales (Ver proyectos, Descargar CV, Contacto).
+
+---
+
+## Documentación: Edición y configuración del portafolio
+
+### ¿Cómo editar la información del portafolio?
+
+Toda la información editable (Sobre mí, Skills, Contacto, Proyectos) se gestiona desde el backend, lo que permite cambiar textos, enlaces, imágenes y datos de contacto sin modificar el frontend.
+
+### 1. Editar datos generales (Sobre mí, Skills, Contacto)
+- Ve al archivo o endpoint de configuración en el backend: `/api/configuracion-portafolio`.
+- Modifica los campos `sobreMi`, `skills` y `contacto` según lo que desees mostrar.
+- Ejemplo de estructura JSON:
+
+```json
+{
+  "sobreMi": {
+    "nombre": "Tu Nombre",
+    "descripcion": "Breve descripción profesional.",
+    "fotoUrl": "https://tusitio.com/foto.jpg",
+    "contacto": "+58 123-4567890"
+  },
+  "skills": ["Angular", "NestJS", "TypeScript"],
+  "contacto": {
+    "email": "tucorreo@email.com",
+    "redesSociales": ["https://twitter.com/tuusuario"]
+  }
+}
+```
+- Guarda los cambios y recarga el frontend para verlos reflejados.
+
+### 2. Editar proyectos
+- Ve al endpoint o archivo mock de proyectos: `/api/proyectos`.
+- Agrega, edita o elimina objetos del array según tus proyectos.
+- Ejemplo de proyecto:
+
+```json
+{
+  "id": "1",
+  "nombre": "Mi Proyecto",
+  "descripcion": "Descripción breve.",
+  "tecnologias": ["Angular", "Node.js"],
+  "enlace": "https://github.com/mi-proyecto",
+  "imagen": "https://tusitio.com/proyecto.png"
+}
+```
+
+### 3. Editar datos de contacto
+- El formulario de contacto envía mensajes al endpoint `/api/contacto`.
+- Si deseas cambiar el email de destino o lógica, edítalo en el backend.
+
+### 4. Personalización visual
+- Los colores, tipografías y estilos globales se configuran en `tailwind.config.js` y `src/styles.scss`.
+- Puedes cambiar la paleta, fuentes y breakpoints para adaptar el diseño a tu marca.
+
+### 5. Pruebas y validación
+- Ejecuta los tests unitarios con `npm test` para asegurar que los cambios no rompen la app.
+
+---
+
+> **Tip:** No es necesario recompilar el frontend para actualizar textos, skills o proyectos. Solo edita la configuración en el backend y recarga la web.
+
+---

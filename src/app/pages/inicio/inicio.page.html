@@ -5,10 +5,10 @@
 			   <div class="space-y-6">
 				   <p class="text-xs font-semibold tracking-wide text-primary-600 uppercase">Desarrollador frontend / fullstack</p>
 				   <div class="space-y-3">
-					   <h1 class="text-3xl md:text-4xl font-semibold text-slate-900 dark:text-slate-50">
+					   <h1 class="text-3xl md:text-5xl font-bold text-slate-900 dark:text-slate-50 leading-tight">
 						   {{ data['hero'].title }}
 					   </h1>
-					   <p class="text-base md:text-lg text-slate-700 dark:text-slate-300">
+					   <p class="text-base md:text-lg text-slate-700 dark:text-slate-300 max-w-xl">
 						   {{ data['hero'].description }}
 					   </p>
 				   </div>
@@ -22,21 +22,16 @@
 						   </span>
 					   }
 				   </div>
-				   <div class="flex flex-wrap gap-3 items-center">
-					   <ui-button routerLink="/catalog" label="Ver proyectos" variant="default"></ui-button>
-					   <a
-						   *ngFor="let link of data['links']"
-						   class="text-sm text-primary-700 dark:text-primary-300 hover:underline"
-						   [href]="link.url"
-						   target="_blank"
-						   rel="noreferrer noopener"
-					   >
-						   {{ link.label }}
-					   </a>
+				   <div class="flex flex-wrap gap-3 items-center mt-4">
+					   <a routerLink="/proyectos" class="px-5 py-2 rounded-md bg-primary-600 text-white font-semibold shadow hover:bg-primary-700 transition focus:outline-none focus:ring-2 focus:ring-primary-400 focus:ring-offset-2" aria-label="Ver proyectos">Ver proyectos</a>
+					   <a routerLink="/contacto-form" class="px-5 py-2 rounded-md bg-accent text-white font-semibold shadow hover:bg-accent/90 transition focus:outline-none focus:ring-2 focus:ring-accent focus:ring-offset-2" aria-label="Contáctame">Contáctame</a>
+					   <a routerLink="/sobre-mi" class="text-sm text-primary-700 dark:text-primary-300 hover:underline">Sobre mí</a>
+					   <a routerLink="/skills" class="text-sm text-primary-700 dark:text-primary-300 hover:underline">Skills</a>
+					   <a routerLink="/contacto" class="text-sm text-primary-700 dark:text-primary-300 hover:underline">Contacto</a>
 				   </div>
 			   </div>
 			   <div class="flex justify-center md:justify-end">
-				   <div class="relative w-64 h-64 md:w-72 md:h-72 rounded-3xl bg-gradient-to-br from-primary-600 via-purple-500 to-sky-500 shadow-2xl overflow-hidden">
+				   <div class="relative w-64 h-64 md:w-80 md:h-80 rounded-3xl bg-gradient-to-br from-primary-600 via-purple-500 to-sky-500 shadow-2xl overflow-hidden">
 					   @if (data['hero'].avatarUrl) {
 						   <img
 							   [src]="data['hero'].avatarUrl"

@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { AdminMenuComponent } from '../../../pages/admin/admin-menu.component';
 import { FormBuilder, Validators, FormArray, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { AdminHomeSettingsApiService } from '../../../infrastructure/services/admin-home-settings-api.service';
@@ -8,7 +9,7 @@ import { finalize } from 'rxjs';
 @Component({
   selector: 'admin-hero-edit',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, AdminMenuComponent],
   templateUrl: './hero-edit.component.html',
   styleUrls: ['./hero-edit.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
