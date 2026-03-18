@@ -39,6 +39,10 @@ export const routes: Routes = [
     loadChildren: () => import('./pages/catalog/catalog.routes').then((m) => m.CATALOG_ROUTES)
   },
   {
+    path: 'proyectos',
+    loadComponent: () => import('./proyectos/proyectos.component').then(m => m.ProyectosComponent)
+  },
+  {
     path: 'projects/wizard',
     canActivate: [authGuard],
     loadChildren: () => import('./pages/project-wizard/project-wizard.routes').then((m) => m.PROJECT_WIZARD_ROUTES)

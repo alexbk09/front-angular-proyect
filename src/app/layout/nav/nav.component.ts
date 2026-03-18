@@ -1,4 +1,3 @@
-  openAdmin = false;
 import { Component, signal, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
