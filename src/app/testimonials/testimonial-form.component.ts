@@ -1,40 +1,35 @@
 import { Component, Signal, signal, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Proyecto } from './proyecto.model';
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProjectService } from './project.service';
-import { ToastService } from './toast.service';
+import { TestimonialsService } from './testimonials.service';
+import { Testimonio } from './testimonial.model';
 
 @Component({
-  selector: 'app-project-form',
+  selector: 'app-testimonial-form',
   standalone: true,
-  templateUrl: './project-form.component.html',
-  styleUrls: ['./project-form.component.scss']
+  templateUrl: './testimonial-form.component.html',
+  styleUrls: ['./testimonial-form.component.scss']
 })
-export class ProjectFormComponent implements OnInit {
+export class TestimonialFormComponent implements OnInit {
   form: FormGroup;
   imagenPreview: Signal<string | null> = signal(null);
   loading = signal(false);
   error = signal<string | null>(null);
   editMode = false;
-  proyectoId: number | null = null;
+  testimonioId: number | null = null;
 
   constructor(
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private projectService: ProjectService,
-    private toast: ToastService
+    private testimonialsService: TestimonialsService
   ) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
-      descripcion: ['', Validators.required],
-      tecnologias: ['', Validators.required],
-      url: ['', [Validators.required, Validators.pattern('https?://.+')]],
+      cargo: ['', Validators.required],
+      mensaje: ['', Validators.required],
       imagen: [null],
-      is_featured: [false],
-      is_public: [true],
-      is_draft: [false]
+      is_public: [true]
     });
   }
 
@@ -43,19 +38,19 @@ export class ProjectFormComponent implements OnInit {
       const id = params.get('id');
       if (id) {
         this.editMode = true;
-        this.proyectoId = +id;
+        this.testimonioId = +id;
         this.loading.set(true);
-        this.projectService.getProyectos().subscribe({
-          next: (proyectos) => {
-            const proyecto = proyectos.find(p => p.id === this.proyectoId);
-            if (proyecto) {
-              this.form.patchValue(proyecto);
-              this.imagenPreview.set(proyecto.imagen);
+        this.testimonialsService.getTestimonios().subscribe({
+          next: (testimonios) => {
+            const testimonio = testimonios.find(t => t.id === this.testimonioId);
+            if (testimonio) {
+              this.form.patchValue(testimonio);
+              this.imagenPreview.set(testimonio.imagen);
             }
             this.loading.set(false);
           },
           error: () => {
-            this.error.set('Error al cargar el proyecto');
+            this.error.set('Error al cargar el testimonio');
             this.loading.set(false);
           }
         });
@@ -83,29 +78,25 @@ export class ProjectFormComponent implements OnInit {
           formData.append(key, value);
         }
       });
-      if (this.editMode && this.proyectoId) {
-        this.projectService.updateProyecto(this.proyectoId, formData).subscribe({
+      if (this.editMode && this.testimonioId) {
+        this.testimonialsService.updateTestimonio(this.testimonioId, formData).subscribe({
           next: () => {
             this.loading.set(false);
-            this.toast.show('Proyecto actualizado correctamente', 'success');
             this.router.navigate(['../'], { relativeTo: this.route });
           },
           error: () => {
-            this.error.set('Error al actualizar el proyecto');
-            this.toast.show('Error al actualizar el proyecto', 'error');
+            this.error.set('Error al actualizar el testimonio');
             this.loading.set(false);
           }
         });
       } else {
-        this.projectService.createProyecto(formData).subscribe({
+        this.testimonialsService.createTestimonio(formData).subscribe({
           next: () => {
             this.loading.set(false);
-            this.toast.show('Proyecto creado correctamente', 'success');
             this.router.navigate(['../'], { relativeTo: this.route });
           },
           error: () => {
-            this.error.set('Error al crear el proyecto');
-            this.toast.show('Error al crear el proyecto', 'error');
+            this.error.set('Error al crear el testimonio');
             this.loading.set(false);
           }
         });

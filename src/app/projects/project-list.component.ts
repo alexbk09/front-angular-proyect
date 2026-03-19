@@ -1,6 +1,8 @@
 import { Component, Signal, signal, OnInit } from '@angular/core';
 import { Proyecto } from './proyecto.model';
 import { ProjectService } from './project.service';
+import { Router } from '@angular/router';
+import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-project-list',
@@ -12,8 +14,9 @@ export class ProjectListComponent implements OnInit {
   proyectos: Signal<Proyecto[]> = signal([]);
   loading = signal(true);
   error = signal<string | null>(null);
+  proyectoAEliminar: Proyecto | null = null;
 
-  constructor(private projectService: ProjectService) {}
+  constructor(private projectService: ProjectService, private router: Router, private toast: ToastService) {}
 
   ngOnInit() {
     this.fetchProyectos();
@@ -33,5 +36,36 @@ export class ProjectListComponent implements OnInit {
     });
   }
 
-  // Métodos para editar/eliminar se agregarán después
+  irANuevo() {
+    this.router.navigate(['admin/proyectos/nuevo']);
+  }
+
+  irAEditar(proyecto: Proyecto) {
+    this.router.navigate(['admin/proyectos/editar', proyecto.id]);
+  }
+
+  confirmarEliminar(proyecto: Proyecto) {
+    this.proyectoAEliminar = proyecto;
+  }
+
+  cancelarEliminar() {
+    this.proyectoAEliminar = null;
+  }
+
+  eliminarProyecto() {
+    if (!this.proyectoAEliminar) return;
+    this.loading.set(true);
+    this.projectService.deleteProyecto(this.proyectoAEliminar.id).subscribe({
+      next: () => {
+        this.fetchProyectos();
+        this.toast.show('Proyecto eliminado correctamente', 'success');
+        this.proyectoAEliminar = null;
+      },
+      error: () => {
+        this.error.set('Error al eliminar proyecto');
+        this.toast.show('Error al eliminar proyecto', 'error');
+        this.loading.set(false);
+      }
+    });
+  }
 }

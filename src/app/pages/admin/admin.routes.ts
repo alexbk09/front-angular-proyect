@@ -18,6 +18,11 @@ export const ADMIN_ROUTES: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'proyectos',
+    loadComponent: () => import('../../projects/project-list.component').then(m => m.ProjectListComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'skills',
     loadComponent: () => import('./skills-edit/skills-edit.component').then(m => m.SkillsEditComponent),
     canActivate: [authGuard]
