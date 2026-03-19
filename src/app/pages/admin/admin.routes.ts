@@ -1,3 +1,8 @@
+  {
+    path: 'about-content-form',
+    loadComponent: () => import('../../features/admin/about-content-form.component').then(m => m.AboutContentFormComponent),
+    canActivate: [authGuard]
+  },
 import { Routes } from '@angular/router';
 import { authGuard } from '../../infrastructure/guards/auth.guard';
 

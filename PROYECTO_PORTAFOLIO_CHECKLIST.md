@@ -192,17 +192,19 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 - [x] Definir 3–4 tipos de problemas que resuelves (ej. dashboards, portales, sistemas internos).
 - [x] Definir CTA principal del inicio ("Ver proyectos", "Descargar CV", "Agendar llamada").
 
+
 ### 16.2 Hero / Cabecera de inicio
 
-- [ ] Foto/ilustración profesional visible.
+- [x] Foto/ilustración profesional visible.
 - [x] Título grande con tu rol (Frontend Engineer / Fullstack Developer, etc.).
 - [x] Subtítulo con experiencia y tipo de proyectos.
 - [x] Botones de acción:
   - [x] "Ver proyectos destacados".
-  - [ ] "Descargar CV" (link administrable).
+  - [x] "Descargar CV" (link administrable).
 - [x] Links a GitHub, LinkedIn y contacto.
 - [x] Layout moderno y responsive (2 columnas en desktop, 1 en mobile).
-- [ ] Todo el contenido del hero editable desde el admin.
+- [x] Todo el contenido del hero editable desde el admin.
+
 
 ### 16.3 Sección "Sobre mí" orientada a empleo
 
@@ -227,18 +229,28 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 
 ### 16.6 CRUD completo de proyectos (admin)
 
-- [ ] Admin de proyectos con crear/editar/borrar.
-- [ ] Campos de proyecto:
-  - [ ] Título.
-  - [ ] Descripción corta (para home).
-  - [ ] Descripción larga / historia (para detalle).
-  - [ ] Tecnologías (tags).
-  - [ ] Tipo de proyecto (personal, freelance, cliente, curso).
-  - [ ] Enlace demo.
-  - [ ] Enlace repo.
-  - [ ] Imágenes (screenshot principal + extras).
-  - [ ] Flags: `isFeatured`, `isPublic`.
-- [ ] Sincronizar el catálogo actual con estos campos y filtros.
+ - [x] Admin de proyectos con crear/editar/borrar.
+ - [x] Campos de proyecto:
+   - [x] Título.
+   - [x] Descripción corta (para home).
+   - [x] Descripción larga / historia (para detalle).
+   - [x] Tecnologías (tags).
+   - [x] Tipo de proyecto (personal, freelance, cliente, curso).
+   - [x] Enlace demo.
+   - [x] Enlace repo.
+   - [x] Imágenes (screenshot principal + extras).
+   - [x] Flags: `isFeatured`, `isPublic`.
+ - [x] Sincronizar el catálogo actual con estos campos y filtros.
+ - [x] Validaciones en el formulario de admin (campos obligatorios, URLs válidas, mínimo una imagen).
+ - [x] Permitir reordenar proyectos (drag & drop o campo de orden).
+ - [x] Confirmación antes de borrar un proyecto.
+ - [x] Feedback visual tras crear/editar/borrar (toast, modal, etc.).
+ - [x] Edición de imágenes: previsualización, reemplazo y borrado.
+ - [x] Soporte para proyectos en borrador (flag `isDraft`).
+ - [x] Filtros y búsqueda en el listado de proyectos del admin.
+ - [x] Paginación o scroll infinito si hay muchos proyectos.
+ - [x] Acceso restringido solo a usuarios admin.
+ - [x] Documentar el flujo de alta/edición/borrado en el README o guía interna.
 
 ### 16.7 Testimonios / Social proof
 
