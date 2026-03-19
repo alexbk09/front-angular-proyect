@@ -23,6 +23,11 @@ export const ADMIN_ROUTES: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'testimonios',
+    loadComponent: () => import('../../testimonials/testimonial-list.component').then(m => m.TestimonialListComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'skills',
     loadComponent: () => import('./skills-edit/skills-edit.component').then(m => m.SkillsEditComponent),
     canActivate: [authGuard]

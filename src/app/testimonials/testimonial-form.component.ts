@@ -2,6 +2,7 @@ import { Component, Signal, signal, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestimonialsService } from './testimonials.service';
+import { ToastService } from './toast.service';
 import { Testimonio } from './testimonial.model';
 
 @Component({
@@ -22,7 +23,8 @@ export class TestimonialFormComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private testimonialsService: TestimonialsService
+    private testimonialsService: TestimonialsService,
+    private toast: ToastService
   ) {
     this.form = this.fb.group({
       nombre: ['', Validators.required],
@@ -82,10 +84,12 @@ export class TestimonialFormComponent implements OnInit {
         this.testimonialsService.updateTestimonio(this.testimonioId, formData).subscribe({
           next: () => {
             this.loading.set(false);
+            this.toast.show('Testimonio actualizado correctamente', 'success');
             this.router.navigate(['../'], { relativeTo: this.route });
           },
           error: () => {
             this.error.set('Error al actualizar el testimonio');
+            this.toast.show('Error al actualizar el testimonio', 'error');
             this.loading.set(false);
           }
         });
@@ -93,10 +97,12 @@ export class TestimonialFormComponent implements OnInit {
         this.testimonialsService.createTestimonio(formData).subscribe({
           next: () => {
             this.loading.set(false);
+            this.toast.show('Testimonio creado correctamente', 'success');
             this.router.navigate(['../'], { relativeTo: this.route });
           },
           error: () => {
             this.error.set('Error al crear el testimonio');
+            this.toast.show('Error al crear el testimonio', 'error');
             this.loading.set(false);
           }
         });

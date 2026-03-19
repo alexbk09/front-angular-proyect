@@ -2,6 +2,7 @@ import { Component, OnInit, Signal, signal } from '@angular/core';
 import { Testimonio } from './testimonial.model';
 import { TestimonialsService } from './testimonials.service';
 import { Router } from '@angular/router';
+import { ToastService } from './toast.service';
 
 @Component({
   selector: 'app-testimonial-list',
@@ -15,7 +16,7 @@ export class TestimonialListComponent implements OnInit {
   error = signal<string | null>(null);
   testimonioAEliminar: Testimonio | null = null;
 
-  constructor(private testimonialsService: TestimonialsService, private router: Router) {}
+  constructor(private testimonialsService: TestimonialsService, private router: Router, private toast: ToastService) {}
 
   ngOnInit() {
     this.fetchTestimonios();
@@ -57,10 +58,12 @@ export class TestimonialListComponent implements OnInit {
     this.testimonialsService.deleteTestimonio(this.testimonioAEliminar.id).subscribe({
       next: () => {
         this.fetchTestimonios();
+        this.toast.show('Testimonio eliminado correctamente', 'success');
         this.testimonioAEliminar = null;
       },
       error: () => {
         this.error.set('Error al eliminar testimonio');
+        this.toast.show('Error al eliminar testimonio', 'error');
         this.loading.set(false);
       }
     });

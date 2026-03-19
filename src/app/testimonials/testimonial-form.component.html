@@ -1,3 +1,4 @@
+<app-toast></app-toast>
 <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-4 max-w-xl mx-auto" role="form" aria-label="Formulario de testimonio">
   <div *ngIf="loading()" class="animate-pulse text-center py-4">Guardando...</div>
   <div *ngIf="error()" class="text-red-600 text-center py-2">{{ error() }}</div>
