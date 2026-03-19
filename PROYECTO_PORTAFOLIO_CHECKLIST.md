@@ -254,10 +254,17 @@ Marca qué módulos implementarás y documenta las decisiones de cada uno.
 
 ### 16.7 Testimonios / Social proof
 
-- [ ] Modelo de testimonios en backend (nombre, rol/empresa, texto, foto opcional).
-- [ ] CRUD de testimonios en admin.
+- [x] Modelo de testimonios en backend (nombre, rol/empresa, texto, foto opcional).
+- [x] CRUD de testimonios en admin.
 - [x] Sección en inicio que muestre 1–3 testimonios (slider o grid simple).
-- [ ] Opción para activar/desactivar esta sección desde admin.
+- [x] Opción para activar/desactivar esta sección desde admin.
+  - [x] Validaciones en el formulario de testimonios (campos obligatorios, longitud mínima de texto, foto opcional).
+  - [x] Feedback visual tras crear/editar/borrar testimonios (toast, modal, etc.).
+  - [x] Confirmación antes de borrar un testimonio.
+  - [x] Filtros y búsqueda en el listado de testimonios del admin.
+  - [x] Paginación si hay muchos testimonios.
+  - [x] Acceso restringido solo a usuarios admin.
+  - [x] Documentar el flujo de alta/edición/borrado de testimonios en el README o guía interna.
 
 ### 16.8 Métricas rápidas (impacto)
 
