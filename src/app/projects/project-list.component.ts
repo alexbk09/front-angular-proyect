@@ -1,17 +1,22 @@
-import { Component, Signal, signal, OnInit } from '@angular/core';
+import { Component, signal, WritableSignal, OnInit } from '@angular/core';
 import { Proyecto } from './proyecto.model';
 import { ProjectService } from './project.service';
 import { Router } from '@angular/router';
 import { ToastService } from './toast.service';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ToastComponent } from './toast.component';
+import { ProjectDeleteModalComponent } from './project-delete-modal.component';
 @Component({
   selector: 'app-project-list',
   standalone: true,
+  imports: [CommonModule, FormsModule, ToastComponent, ProjectDeleteModalComponent],
   templateUrl: './project-list.component.html',
   styleUrls: ['./project-list.component.scss']
 })
 export class ProjectListComponent implements OnInit {
-  proyectos: Signal<Proyecto[]> = signal([]);
+  proyectos: WritableSignal<Proyecto[]> = signal([]);
   loading = signal(true);
   error = signal<string | null>(null);
   proyectoAEliminar: Proyecto | null = null;

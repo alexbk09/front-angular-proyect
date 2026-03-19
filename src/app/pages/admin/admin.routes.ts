@@ -1,8 +1,3 @@
-  {
-    path: 'about-content-form',
-    loadComponent: () => import('../../features/admin/about-content-form.component').then(m => m.AboutContentFormComponent),
-    canActivate: [authGuard]
-  },
 import { Routes } from '@angular/router';
 import { authGuard } from '../../infrastructure/guards/auth.guard';
 
@@ -18,6 +13,11 @@ export const ADMIN_ROUTES: Routes = [
     canActivate: [authGuard]
   },
   {
+    path: 'editar-sobre-mi',
+    loadComponent: () => import('./about-content-form.component').then(m => m.AboutContentFormComponent),
+    canActivate: [authGuard]
+  },
+  {
     path: 'proyectos',
     loadComponent: () => import('../../projects/project-list.component').then(m => m.ProjectListComponent),
     canActivate: [authGuard]
@@ -30,6 +30,11 @@ export const ADMIN_ROUTES: Routes = [
   {
     path: 'skills',
     loadComponent: () => import('./skills-edit/skills-edit.component').then(m => m.SkillsEditComponent),
+    canActivate: [authGuard]
+  },
+  {
+    path: 'metrics',
+    loadComponent: () => import('../../metrics/metrics-admin.component').then(m => m.MetricsAdminComponent),
     canActivate: [authGuard]
   },
 ];

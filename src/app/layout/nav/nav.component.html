@@ -6,7 +6,7 @@
     </a>
     <nav class="hidden md:flex items-center gap-6" aria-label="Principal">
       <a routerLink="/inicio" routerLinkActive="text-primary-600 font-bold underline underline-offset-4" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition">Inicio</a>
-<!--       <a routerLink="/sobre-mi" routerLinkActive="text-primary-600 font-bold underline underline-offset-4" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition">Sobre mí</a> -->
+  <a routerLink="/sobre-mi" routerLinkActive="text-primary-600 font-bold underline underline-offset-4" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition">Sobre mí</a>
       <a routerLink="/catalog" routerLinkActive="text-primary-600 font-bold underline underline-offset-4" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition">Proyectos</a>
       <a routerLink="/skills" routerLinkActive="text-primary-600 font-bold underline underline-offset-4" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition">Skills</a>
       <a routerLink="/contacto" routerLinkActive="text-primary-600 font-bold underline underline-offset-4" class="text-gray-700 dark:text-gray-200 hover:text-primary-600 transition">Contacto</a>
@@ -37,7 +37,7 @@
   <div *ngIf="open()" class="md:hidden border-t border-gray-200 dark:border-gray-800">
     <nav class="container py-3 flex flex-col gap-3" aria-label="Móvil">
       <a routerLink="/inicio" (click)="close()" class="text-gray-700 dark:text-gray-200">Inicio</a>
-<!--       <a routerLink="/sobre-mi" (click)="close()" class="text-gray-700 dark:text-gray-200">Sobre mí</a> -->
+  <a routerLink="/sobre-mi" (click)="close()" class="text-gray-700 dark:text-gray-200">Sobre mí</a>
       <a routerLink="/catalog" (click)="close()" class="text-gray-700 dark:text-gray-200">Proyectos</a>
       <a routerLink="/skills" (click)="close()" class="text-gray-700 dark:text-gray-200">Skills</a>
       <a routerLink="/contacto" (click)="close()" class="text-gray-700 dark:text-gray-200">Contacto</a>

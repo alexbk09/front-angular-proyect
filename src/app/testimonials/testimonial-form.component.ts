@@ -1,19 +1,24 @@
-import { Component, Signal, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { TestimonialsService } from './testimonials.service';
 import { ToastService } from './toast.service';
+import { ToastComponent } from './toast.component';
 import { Testimonio } from './testimonial.model';
 
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 @Component({
   selector: 'app-testimonial-form',
   standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, FormsModule, ToastComponent],
   templateUrl: './testimonial-form.component.html',
-  styleUrls: ['./testimonial-form.component.scss']
+  // styleUrls: ['./testimonial-form.component.scss']
 })
 export class TestimonialFormComponent implements OnInit {
   form: FormGroup;
-  imagenPreview: Signal<string | null> = signal(null);
+  imagenPreview: WritableSignal<string | null> = signal<string | null>(null);
   loading = signal(false);
   error = signal<string | null>(null);
   editMode = false;
@@ -21,8 +26,8 @@ export class TestimonialFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
+    public route: ActivatedRoute,
+    public router: Router,
     private testimonialsService: TestimonialsService,
     private toast: ToastService
   ) {
@@ -47,7 +52,7 @@ export class TestimonialFormComponent implements OnInit {
             const testimonio = testimonios.find(t => t.id === this.testimonioId);
             if (testimonio) {
               this.form.patchValue(testimonio);
-              this.imagenPreview.set(testimonio.imagen);
+              this.imagenPreview.set(testimonio.imagen ?? null);
             }
             this.loading.set(false);
           },
@@ -77,7 +82,9 @@ export class TestimonialFormComponent implements OnInit {
       const formData = new FormData();
       Object.entries(this.form.value).forEach(([key, value]) => {
         if (value !== null && value !== undefined) {
-          formData.append(key, value);
+          if (typeof value === 'string' || value instanceof Blob) {
+            formData.append(key, value);
+          }
         }
       });
       if (this.editMode && this.testimonioId) {

@@ -1,8 +1,11 @@
 <div class="fixed inset-0 bg-black/40" (click)="close.emit()"></div>
 <div class="fixed top-0 right-0 w-64 h-full bg-white dark:bg-gray-900 border-l border-gray-200 dark:border-gray-800 p-4">
   <nav class="flex flex-col gap-3">
-    <a href="#features" class="text-gray-700 dark:text-gray-200">Funciones</a>
-    <a href="#integrations" class="text-gray-700 dark:text-gray-200">Integraciones</a>
-    <a href="#precios" class="text-gray-700 dark:text-gray-200">Planes</a>
+    <a routerLink="/inicio" (click)="close.emit()" class="text-gray-700 dark:text-gray-200">Inicio</a>
+    <a routerLink="/sobre-mi" (click)="close.emit()" class="text-gray-700 dark:text-gray-200">Sobre mí</a>
+    <a routerLink="/catalog" (click)="close.emit()" class="text-gray-700 dark:text-gray-200">Proyectos</a>
+    <a routerLink="/skills" (click)="close.emit()" class="text-gray-700 dark:text-gray-200">Skills</a>
+    <a routerLink="/contacto" (click)="close.emit()" class="text-gray-700 dark:text-gray-200">Contacto</a>
+    <a routerLink="/contacto-form" (click)="close.emit()" class="px-3 py-1.5 rounded-md bg-primary-600 text-white font-semibold shadow">Contáctame</a>
   </nav>
 </div>

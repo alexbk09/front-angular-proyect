@@ -1,17 +1,22 @@
-import { Component, OnInit, Signal, signal } from '@angular/core';
-import { Testimonio } from './testimonial.model';
+import { Component, OnInit, signal, WritableSignal } from '@angular/core';
+import type { Testimonio } from './testimonial.model';
 import { TestimonialsService } from './testimonials.service';
 import { Router } from '@angular/router';
 import { ToastService } from './toast.service';
 
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { ToastComponent } from './toast.component';
+import { TestimonialDeleteDialogComponent } from './testimonial-delete-dialog.component';
 @Component({
   selector: 'app-testimonial-list',
   standalone: true,
+  imports: [CommonModule, FormsModule, ToastComponent, TestimonialDeleteDialogComponent],
   templateUrl: './testimonial-list.component.html',
-  styleUrls: ['./testimonial-list.component.scss']
+  // styleUrls: ['./testimonial-list.component.scss']
 })
 export class TestimonialListComponent implements OnInit {
-  testimonios: Signal<Testimonio[]> = signal([]);
+  testimonios: WritableSignal<Testimonio[]> = signal<Testimonio[]>([]);
   loading = signal(true);
   error = signal<string | null>(null);
   testimonioAEliminar: Testimonio | null = null;
@@ -43,6 +48,7 @@ export class TestimonialListComponent implements OnInit {
   irAEditar(testimonio: Testimonio) {
     this.router.navigate(['admin/testimonios/editar', testimonio.id]);
   }
+
 
   confirmarEliminar(testimonio: Testimonio) {
     this.testimonioAEliminar = testimonio;

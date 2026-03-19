@@ -18,9 +18,9 @@ import { ConfiguracionPortafolioService } from '../../services/configuracion-por
       <ng-container *ngIf="config().data as data">
         <h2 class="text-2xl font-bold mb-4">Contacto</h2>
         <ul class="space-y-2">
-          <li><span class="font-semibold">Email:</span> {{ data.contacto.email }}</li>
-          <li *ngFor="let red of data.contacto.redesSociales">
-            <span class="font-semibold">Red:</span> <a [href]="red" class="text-blue-600 hover:underline" target="_blank" rel="noopener">{{ red }}</a>
+          <li *ngIf="data.contacto"><span class="font-semibold">Email:</span> <a [href]="'mailto:' + data.contacto">{{ data.contacto }}</a></li>
+          <li *ngFor="let red of data.links">
+            <span class="font-semibold">Red:</span> <a [href]="red.url" class="text-blue-600 hover:underline" target="_blank" rel="noopener">{{ red.label }}</a>
           </li>
         </ul>
       </ng-container>

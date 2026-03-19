@@ -1,19 +1,23 @@
-import { Component, Signal, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Proyecto } from './proyecto.model';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProjectService } from './project.service';
 import { ToastService } from './toast.service';
 
+import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
+import { ToastComponent } from './toast.component';
 @Component({
   selector: 'app-project-form',
   standalone: true,
+  imports: [CommonModule, ReactiveFormsModule, ToastComponent],
   templateUrl: './project-form.component.html',
   styleUrls: ['./project-form.component.scss']
 })
 export class ProjectFormComponent implements OnInit {
   form: FormGroup;
-  imagenPreview: Signal<string | null> = signal(null);
+  imagenPreview: WritableSignal<string | null> = signal<string | null>(null);
   loading = signal(false);
   error = signal<string | null>(null);
   editMode = false;
@@ -21,8 +25,8 @@ export class ProjectFormComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private route: ActivatedRoute,
-    private router: Router,
+    public route: ActivatedRoute,
+    public router: Router,
     private projectService: ProjectService,
     private toast: ToastService
   ) {
@@ -80,7 +84,9 @@ export class ProjectFormComponent implements OnInit {
       const formData = new FormData();
       Object.entries(this.form.value).forEach(([key, value]) => {
         if (value !== null && value !== undefined) {
-          formData.append(key, value);
+          if (typeof value === 'string' || value instanceof Blob) {
+            formData.append(key, value);
+          }
         }
       });
       if (this.editMode && this.proyectoId) {
