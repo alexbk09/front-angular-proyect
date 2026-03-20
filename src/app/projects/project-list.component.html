@@ -1,31 +1,31 @@
-<div *ngIf="loading()" class="animate-pulse text-center py-8">Cargando proyectos...</div>
-<div *ngIf="error()" class="text-red-600 text-center py-4">{{ error() }}</div>
+<div *ngIf="loading()" class="animate-pulse text-center py-8 text-gray-700 dark:text-gray-200">Cargando proyectos...</div>
+<div *ngIf="error()" class="text-red-600 dark:text-red-400 text-center py-4">{{ error() }}</div>
 
-<div *ngIf="!loading() && proyectos().length === 0" class="text-center py-8 text-gray-500">
+<div *ngIf="!loading() && proyectos().length === 0" class="text-center py-8 text-gray-500 dark:text-gray-400">
   No hay proyectos registrados.
 </div>
 
 <app-toast></app-toast>
 <div class="flex flex-col sm:flex-row justify-end mb-4">
-  <button class="bg-blue-600 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400" (click)="irANuevo()" aria-label="Crear nuevo proyecto">Nuevo Proyecto</button>
+  <button class="bg-blue-600 dark:bg-blue-500 text-white px-4 py-2 rounded focus:outline-none focus:ring-2 focus:ring-blue-400 dark:focus:ring-blue-300 transition-colors duration-200" (click)="irANuevo()" aria-label="Crear nuevo proyecto">Nuevo Proyecto</button>
 </div>
 <div *ngIf="!loading() && proyectos().length > 0" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" role="list">
-  <div *ngFor="let proyecto of proyectos()" class="bg-white rounded-lg shadow p-4 flex flex-col gap-2" tabindex="0" role="listitem" aria-label="Proyecto {{ proyecto.nombre }}">
-    <img *ngIf="proyecto.imagen" [src]="proyecto.imagen" alt="Imagen del proyecto {{ proyecto.nombre }}" class="rounded w-full h-40 object-cover mb-2" />
-    <h3 class="font-bold text-lg">{{ proyecto.nombre }}</h3>
-    <p class="text-gray-600">{{ proyecto.descripcion }}</p>
+  <div *ngFor="let proyecto of proyectos()" class="bg-white dark:bg-gray-800 rounded-lg shadow p-4 flex flex-col gap-2 border border-gray-100 dark:border-gray-700 transition-colors duration-200" tabindex="0" role="listitem" aria-label="Proyecto {{ proyecto.nombre }}">
+    <img *ngIf="proyecto.imagen" [src]="proyecto.imagen" alt="Imagen del proyecto {{ proyecto.nombre }}" class="rounded w-full h-40 object-cover mb-2 border-2 border-primary-500 dark:border-primary-400" />
+    <h3 class="font-bold text-lg text-gray-900 dark:text-gray-100">{{ proyecto.nombre }}</h3>
+    <p class="text-gray-600 dark:text-gray-300">{{ proyecto.descripcion }}</p>
     <div class="flex flex-wrap gap-1 my-2">
-      <span class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-xs" *ngFor="let tech of proyecto.tecnologias.split(',')">{{ tech }}</span>
+      <span class="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 px-2 py-1 rounded text-xs" *ngFor="let tech of proyecto.tecnologias.split(',')">{{ tech }}</span>
     </div>
-    <a *ngIf="proyecto.url" [href]="proyecto.url" target="_blank" rel="noopener" class="text-blue-600 underline text-sm" aria-label="Ver proyecto {{ proyecto.nombre }}">Ver proyecto</a>
+    <a *ngIf="proyecto.url" [href]="proyecto.url" target="_blank" rel="noopener" class="text-blue-600 dark:text-blue-400 underline text-sm" aria-label="Ver proyecto {{ proyecto.nombre }}">Ver proyecto</a>
     <div class="flex gap-2 mt-2">
-      <button class="bg-yellow-500 text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400" (click)="irAEditar(proyecto)" aria-label="Editar {{ proyecto.nombre }}">Editar</button>
-      <button class="bg-red-600 text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-red-400" (click)="confirmarEliminar(proyecto)" aria-label="Eliminar {{ proyecto.nombre }}">Eliminar</button>
+      <button class="bg-yellow-500 dark:bg-yellow-600 text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-yellow-400 dark:focus:ring-yellow-300 transition-colors duration-200" (click)="irAEditar(proyecto)" aria-label="Editar {{ proyecto.nombre }}">Editar</button>
+      <button class="bg-red-600 dark:bg-red-500 text-white px-3 py-1 rounded focus:outline-none focus:ring-2 focus:ring-red-400 dark:focus:ring-red-300 transition-colors duration-200" (click)="confirmarEliminar(proyecto)" aria-label="Eliminar {{ proyecto.nombre }}">Eliminar</button>
     </div>
     <div class="flex gap-1 mt-2">
-      <span *ngIf="proyecto.is_featured" class="bg-green-100 text-green-800 px-2 py-1 rounded text-xs">Destacado</span>
-      <span *ngIf="proyecto.is_draft" class="bg-gray-200 text-gray-700 px-2 py-1 rounded text-xs">Borrador</span>
-      <span *ngIf="!proyecto.is_public" class="bg-red-100 text-red-800 px-2 py-1 rounded text-xs">No público</span>
+      <span *ngIf="proyecto.is_featured" class="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 px-2 py-1 rounded text-xs">Destacado</span>
+      <span *ngIf="proyecto.is_draft" class="bg-gray-200 dark:bg-gray-700 text-gray-700 dark:text-gray-200 px-2 py-1 rounded text-xs">Borrador</span>
+      <span *ngIf="!proyecto.is_public" class="bg-red-100 dark:bg-red-900 text-red-800 dark:text-red-200 px-2 py-1 rounded text-xs">No pblico</span>
     </div>
   </div>
 </div>

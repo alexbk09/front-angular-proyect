@@ -87,6 +87,20 @@ export class TestimonialFormComponent implements OnInit {
           }
         }
       });
+      const handleError = (err: any, accion: string) => {
+        let msg = `Error al ${accion} el testimonio`;
+        if (err?.error?.message) {
+          msg = err.error.message;
+        } else if (typeof err?.error === 'string') {
+          msg = err.error;
+        } else if (typeof err?.error === 'object' && err?.error !== null) {
+          // Si el backend devuelve un objeto con errores de validación
+          msg = Object.values(err.error).flat().join(' | ');
+        }
+        this.error.set(msg);
+        this.toast.show(msg, 'error');
+        this.loading.set(false);
+      };
       if (this.editMode && this.testimonioId) {
         this.testimonialsService.updateTestimonio(this.testimonioId, formData).subscribe({
           next: () => {
@@ -94,11 +108,7 @@ export class TestimonialFormComponent implements OnInit {
             this.toast.show('Testimonio actualizado correctamente', 'success');
             this.router.navigate(['../'], { relativeTo: this.route });
           },
-          error: () => {
-            this.error.set('Error al actualizar el testimonio');
-            this.toast.show('Error al actualizar el testimonio', 'error');
-            this.loading.set(false);
-          }
+          error: (err) => handleError(err, 'actualizar')
         });
       } else {
         this.testimonialsService.createTestimonio(formData).subscribe({
@@ -107,11 +117,7 @@ export class TestimonialFormComponent implements OnInit {
             this.toast.show('Testimonio creado correctamente', 'success');
             this.router.navigate(['../'], { relativeTo: this.route });
           },
-          error: () => {
-            this.error.set('Error al crear el testimonio');
-            this.toast.show('Error al crear el testimonio', 'error');
-            this.loading.set(false);
-          }
+          error: (err) => handleError(err, 'crear')
         });
       }
     } else {

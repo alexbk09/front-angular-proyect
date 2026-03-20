@@ -20,7 +20,7 @@ import { ConfiguracionPortafolioService } from '../../services/configuracion-por
         <h2 class="text-2xl font-bold mb-4">Skills</h2>
         <ul class="flex flex-wrap gap-2">
           <li *ngFor="let skill of data.skills" class="bg-blue-100 text-blue-800 px-3 py-1 rounded-full text-sm font-medium transition hover:bg-blue-200">
-            {{ skill }}
+            {{ skill.name }}
           </li>
         </ul>
       </ng-container>

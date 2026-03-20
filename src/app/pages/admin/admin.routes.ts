@@ -24,8 +24,8 @@ export const ADMIN_ROUTES: Routes = [
   },
   {
     path: 'testimonios',
-    loadComponent: () => import('../../testimonials/testimonial-list.component').then(m => m.TestimonialListComponent),
-    canActivate: [authGuard]
+    canActivate: [authGuard],
+    loadChildren: () => import('../../testimonials/testimonials.routes').then(m => m.TESTIMONIALS_ROUTES)
   },
   {
     path: 'skills',
